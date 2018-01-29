@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.file.service.impl.FileMapper">
+	
+	<!-- Result Map-->
+	<resultMap id="FileResult" type="File">
+		<id property="id" column="file_id" />
+		<result property="postCategoryId" column="file_post_category_id" />
+		<result property="type" column="file_type" />
+		<result property="name" column="file_name" />
+		<result property="ext" column="file_ext" />
+		<result property="size" column="file_size" />
+		<result property="hits" column="file_hits" />
+		<result property="createdAt" column="file_created_at" />
+		<result property="updatedAt" column="file_updated_at" />
+	</resultMap>
+		
+	<!-- SELECT Query -->
+	<select id="selectFileListByUserIdAndTypeAndOffset" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				
+				FROM	files	fi
+				
+				WHERE	fi.post_category_id = 1 	and
+						fi.user_id	=	#{userId}	and
+						fi.type	=	#{type}	
+				
+				order by fi.created_at desc
+				LIMIT 20 OFFSET #{offset};
+	</select>
+	
+	<select id="selectFileListByMarketIdAndTypeAndOffset" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				
+				FROM	files	fi
+				
+				WHERE	fi.post_category_id = 1 	and
+						fi.market_id	=	#{marketId}	and
+						fi.type	=	#{type}	
+				
+				order by fi.created_at desc
+				LIMIT 20 OFFSET #{offset};
+	</select>
+	
+	<select id="selectCommentFileListByStoryId" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				
+				FROM	story_comments	sc,
+						comment_files	cf,
+			            files	fi
+				
+			    where	sc.id = cf.comment_id	and
+						cf.file_id	=	fi.id	and
+						sc.story_id	=	#{storyId}
+	</select>
+	
+	<select id="selectFileListByGroupId" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				
+				FROM	story_comments	sc,
+						comment_files	cf,
+			            files	fi
+				
+			    where	sc.id = cf.comment_id	and
+						cf.file_id	=	fi.id	and
+						sc.group_id	=	#{groupId}
+	</select>
+	
+	<select id="selectFileByCommentId" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				
+				FROM	story_comments	sc,
+						comment_files	cf,
+			            files	fi
+				
+			    where	sc.id = cf.comment_id	and
+						cf.file_id	=	fi.id	and
+						sc.id	=	#{commentId}
+	</select>
+	
+	
+	<!-- INSERT Query -->
+	<insert id="insertFiles" parameterType="java.util.List">
+		<if test="files.size > 0">
+			INSERT INTO files (story_id, market_id, user_id, post_category_id, type, name, ext, size) 
+				VALUES 
+				<foreach collection="files" item="file" separator=",">
+					(#{file.story.id}, #{file.story.user.market.id}, #{file.user.id}, #{file.postCategoryId}, #{file.type}, #{file.name}, #{file.ext}, #{file.size})
+				</foreach>		
+		</if>
+	</insert>
+	
+	<insert id="insertFile" parameterType="File" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO files(story_id, market_id, user_id, post_category_id, type, name, ext, size) VALUES
+		(#{story.id},#{story.user.market.id},#{user.id},#{postCategoryId},#{type},#{name},#{ext},#{size});
+	</insert>
+	
+
+	<!-- UPDATE Query -->
+	<update id="updateFileByHits">
+		UPDATE	files
+			SET	hits = hits+1 
+			WHERE	id	=	#{id}
+	</update>
+	
+	
+	<!-- DELETE Query -->	
+	<delete id="deleteFileById">
+		delete	from	files
+				where	id	=	#{id};
+	</delete>
+	
+	<delete id="deleteFiles">
+		<if test="files.size > 0">
+			delete	from	files
+					where	id	IN
+					<foreach collection="files" item="file" separator="," open="(" close=")">
+						#{file.id}
+					</foreach>		
+		</if>
+	</delete>
+</mapper>

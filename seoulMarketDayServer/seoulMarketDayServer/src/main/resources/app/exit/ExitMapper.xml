@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.exit.service.impl.ExitMapper">
+
+	<!-- SELECT Query -->
+	<select id="selectIsExistByUserId" resultType="Boolean">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+			<property name="alias" value="count"/>
+		    <property name="table" value="exits"/>
+		    <property name="column" value="user_id"/>
+		</include> #{userId}
+	</select>
+
+	<!-- INSET Query -->
+	<insert id="insertExit" parameterType="Exit">
+		INSERT	INTO	exits (user_id, exit_category_id, content) 
+			VALUES ( #{user.id}, #{exitCategory.id}, #{content});
+	</insert>
+
+</mapper>

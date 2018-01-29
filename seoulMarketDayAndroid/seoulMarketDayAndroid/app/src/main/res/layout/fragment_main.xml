@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/lightGray"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/border_gray">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/river"
+                                android:layout_width="wrap_content"
+                                android:layout_height="110dp"
+                                android:layout_marginTop="150dp"
+                                android:layout_weight="1"
+                                android:paddingTop="5dp"
+                                android:src="@drawable/river"
+                                android:visibility="visible"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:layout_editor_absoluteX="8dp">
+
+                            <android.support.constraint.ConstraintLayout
+                                android:id="@+id/cl_gangbuk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/sun"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:src="@drawable/sun"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gwangjin"
+                                    android:layout_width="45dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:tag="6"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_jungnang">
+
+                                    <ImageView
+                                        android:id="@+id/imageView3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/gwangjin" />
+
+                                    <TextView
+                                        android:id="@+id/textView5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="광진"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_mapo"
+                                    android:layout_width="75dp"
+                                    android:layout_height="60dp"
+                                    android:layout_marginStart="9dp"
+                                    android:layout_marginTop="6dp"
+                                    android:tag="13"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_seodaemun">
+
+                                    <ImageView
+                                        android:id="@+id/imageView14"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/mapo" />
+
+                                    <TextView
+                                        android:id="@+id/textView16"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingLeft="5dp"
+                                        android:text="마포"
+                                        android:textSize="13sp" />
+                                </FrameLayout>
+
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_seongdong"
+                                    android:layout_width="70dp"
+                                    android:layout_height="42dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginStart="3dp"
+                                    android:layout_marginTop="5dp"
+                                    android:tag="16"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_yongsan"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_dongdaemun">
+
+                                    <ImageView
+                                        android:id="@+id/imageView6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/seongdong"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                    <TextView
+                                        android:id="@+id/textView8"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="성동"
+                                        android:textSize="13sp"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gangbuk"
+                                    android:layout_width="62dp"
+                                    android:layout_height="36dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="58dp"
+                                    android:tag="3"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_eunpyung"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView7"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/gangbuk" />
+
+                                    <TextView
+                                        android:id="@+id/textView9"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="강북"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_seodaemun"
+                                    android:layout_width="50dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginTop="5dp"
+                                    android:tag="14"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_eunpyung">
+
+                                    <ImageView
+                                        android:id="@+id/imageView11"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/seodaemun" />
+
+                                    <TextView
+                                        android:id="@+id/textView13"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="서대문"
+                                        android:textSize="13sp"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_jongro"
+                                    android:layout_width="47dp"
+                                    android:layout_height="38dp"
+                                    android:layout_marginTop="5dp"
+                                    android:tag="23"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_seodaemun"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_eunpyung">
+
+                                    <ImageView
+                                        android:id="@+id/imageView10"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/jongro" />
+
+                                    <TextView
+                                        android:id="@+id/textView12"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingTop="5dp"
+                                        android:text="종로"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_junggu"
+                                    android:layout_width="56dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginTop="7dp"
+                                    android:tag="24"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_mapo"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_jongro">
+
+                                    <ImageView
+                                        android:id="@+id/imageView12"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/junggu" />
+
+                                    <TextView
+                                        android:id="@+id/textView14"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="중구"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_yongsan"
+                                    android:layout_width="78dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="3dp"
+                                    android:tag="21"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_mapo"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_junggu">
+
+                                    <ImageView
+                                        android:id="@+id/imageView13"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/yongsan" />
+
+                                    <TextView
+                                        android:id="@+id/textView15"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="용산"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_dobong"
+                                    android:layout_width="62dp"
+                                    android:layout_height="80dp"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginTop="56dp"
+                                    android:tag="10"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_gangbuk"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/dobong" />
+
+                                    <TextView
+                                        android:id="@+id/textView6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="도봉"
+                                        android:textSize="13sp"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_dongdaemun"
+                                    android:layout_width="88dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginEnd="57dp"
+                                    android:layout_marginRight="57dp"
+                                    android:layout_marginTop="9dp"
+                                    android:tag="11"
+                                    app:layout_constraintRight_toRightOf="@+id/fl_mainfragment_jungnang"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_dobong">
+
+                                    <ImageView
+                                        android:id="@+id/imageView5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/dongdaemun"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                    <TextView
+                                        android:id="@+id/textView7"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingLeft="10dp"
+                                        android:text="동대문"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <ImageView
+                                    android:id="@+id/imageView17"
+                                    android:layout_width="30dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginEnd="50dp"
+                                    android:layout_marginRight="50dp"
+                                    android:layout_marginTop="120dp"
+                                    android:src="@drawable/trees"
+                                    app:layout_constraintBottom_toTopOf="@+id/fl_mainfragment_dongdaemun"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.511" />
+
+                                <ImageView
+                                    android:id="@+id/namsan"
+                                    android:layout_width="33dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginTop="21dp"
+                                    android:src="@drawable/namsan"
+                                    app:layout_constraintRight_toLeftOf="@+id/fl_mainfragment_seongdong"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_seongbuk" />
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_jungnang"
+                                    android:layout_width="44dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_marginRight="6dp"
+                                    android:layout_marginTop="2dp"
+                                    android:tag="25"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_nowon">
+
+                                    <ImageView
+                                        android:id="@+id/imageView2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/jungnang" />
+
+                                    <TextView
+                                        android:id="@+id/textView4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="중랑"
+                                        android:textColor="@color/defaultTextColor"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_seongbuk"
+                                    android:layout_width="54dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginTop="5dp"
+                                    android:tag="17"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_jongro"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_gangbuk">
+
+                                    <ImageView
+                                        android:id="@+id/imageView8"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/seongbuk" />
+
+                                    <TextView
+                                        android:id="@+id/textView10"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="성북"
+                                        android:textSize="13sp"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_nowon"
+                                    android:layout_width="54dp"
+                                    android:layout_height="52dp"
+                                    android:layout_marginTop="63dp"
+                                    android:tag="9"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_dobong"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    tools:layout_constraintTop_creator="1">
+
+                                    <ImageView
+                                        android:id="@+id/imageView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/nowon"
+                                        app:layout_constraintTop_toBottomOf="parent"
+                                        tools:layout_constraintTop_creator="1"
+                                        tools:layout_editor_absoluteX="18dp" />
+
+                                    <TextView
+                                        android:id="@+id/textView3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="노원"
+                                        android:textColor="@color/defaultTextColor"
+                                        android:textSize="13sp"
+                                        app:layout_constraintLeft_toLeftOf="@+id/imageView"
+                                        app:layout_constraintTop_toTopOf="@+id/imageView"
+                                        tools:layout_constraintLeft_creator="1"
+                                        tools:layout_constraintTop_creator="1" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_eunpyung"
+                                    android:layout_width="80dp"
+                                    android:layout_height="34dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginTop="60dp"
+                                    android:tag="22"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView9"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/eunpyung" />
+
+                                    <TextView
+                                        android:id="@+id/textView11"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="은평"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <ImageView
+                                    android:id="@+id/mountain"
+                                    android:layout_width="178dp"
+                                    android:layout_height="72dp"
+                                    android:layout_marginLeft="24dp"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginTop="3dp"
+                                    android:src="@drawable/mountain"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/gwanghwamun"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginBottom="76dp"
+                                    android:layout_marginLeft="110dp"
+                                    android:src="@drawable/gwanghwamun"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent" />
+
+
+                            </android.support.constraint.ConstraintLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="150dp"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                            tools:layout_editor_absoluteX="8dp">
+
+                            <android.support.constraint.ConstraintLayout
+                                android:id="@+id/cl_gangnam"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/cl_gangbuk">
+
+
+                                <ImageView
+                                    android:id="@+id/cruiser"
+                                    android:layout_width="43dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="right"
+                                    android:layout_marginRight="45dp"
+                                    android:layout_marginTop="45dp"
+                                    android:src="@drawable/ship"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gangdong"
+                                    android:layout_width="46dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginTop="69dp"
+                                    android:tag="2"
+                                    app:layout_constraintHorizontal_bias="0.157"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_gangnam"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView29"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/gangdong" />
+
+                                    <TextView
+                                        android:id="@+id/textView27"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingTop="10dp"
+                                        android:text="강동"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_songpa"
+                                    android:layout_width="46dp"
+                                    android:layout_height="53dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:tag="18"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_gangnam"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_gangdong">
+
+                                    <ImageView
+                                        android:id="@+id/imageView28"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/songpa" />
+
+                                    <TextView
+                                        android:id="@+id/textView26"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingBottom="5dp"
+                                        android:text="송파"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gangnam"
+                                    android:layout_width="42dp"
+                                    android:layout_height="88dp"
+                                    android:layout_marginTop="87dp"
+                                    android:tag="1"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_seocho"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView27"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/gangnam" />
+
+                                    <TextView
+                                        android:id="@+id/textView25"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="강남"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_seocho"
+                                    android:layout_width="45dp"
+                                    android:layout_height="84dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginStart="3dp"
+                                    android:layout_marginTop="91dp"
+                                    android:tag="15"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_dongjak"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView26"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/seocho" />
+
+                                    <TextView
+                                        android:id="@+id/textView24"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="서초"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_geumcheon"
+                                    android:layout_width="77dp"
+                                    android:layout_height="38dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginStart="8dp"
+                                    android:tag="8"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_guro">
+
+                                    <ImageView
+                                        android:id="@+id/imageView25"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/geumcheon" />
+
+                                    <TextView
+                                        android:id="@+id/textView23"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="금천"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gwanak"
+                                    android:layout_width="68dp"
+                                    android:layout_height="38dp"
+                                    android:layout_marginEnd="2dp"
+                                    android:layout_marginTop="2dp"
+                                    android:tag="5"
+                                    app:layout_constraintRight_toLeftOf="@+id/fl_mainfragment_seocho"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_dongjak">
+
+                                    <ImageView
+                                        android:id="@+id/imageView24"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/gwanak"
+                                        tools:layout_editor_absoluteX="8dp"
+                                        tools:layout_editor_absoluteY="8dp" />
+
+                                    <TextView
+                                        android:id="@+id/textView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="관악"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_guro"
+                                    android:layout_width="75dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginBottom="18dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginStart="8dp"
+                                    android:tag="7"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView23"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/guro" />
+
+                                    <TextView
+                                        android:id="@+id/textView21"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="구로"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_gangseo"
+                                    android:layout_width="53dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:tag="4"
+                                    app:layout_constraintBottom_toTopOf="@+id/fl_mainfragment_yangcheon"
+                                    app:layout_constraintLeft_toLeftOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView18"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/gangseo" />
+
+                                    <TextView
+                                        android:id="@+id/textView17"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingTop="15dp"
+                                        android:text="강서"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_yangcheon"
+                                    android:layout_width="50dp"
+                                    android:layout_height="55dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="19"
+                                    app:layout_constraintBottom_toTopOf="@+id/fl_mainfragment_guro"
+                                    app:layout_constraintLeft_toLeftOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView20"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/yangcheon" />
+
+                                    <TextView
+                                        android:id="@+id/textView18"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingBottom="5dp"
+                                        android:text="양천"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_yeongdeungpo"
+                                    android:layout_width="50dp"
+                                    android:layout_height="66dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginTop="73dp"
+                                    android:tag="20"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_gangseo"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView21"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/yeongdeungpo" />
+
+                                    <TextView
+                                        android:id="@+id/textView19"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:paddingBottom="5dp"
+                                        android:text="영등포"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:id="@+id/fl_mainfragment_dongjak"
+                                    android:layout_width="42dp"
+                                    android:layout_height="45dp"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_marginTop="86dp"
+                                    android:tag="12"
+                                    app:layout_constraintLeft_toRightOf="@+id/fl_mainfragment_yeongdeungpo"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <ImageView
+                                        android:id="@+id/imageView22"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/dongjak" />
+
+                                    <TextView
+                                        android:id="@+id/textView20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="동작"
+                                        android:textSize="13sp" />
+
+                                </FrameLayout>
+
+                                <ImageView
+                                    android:id="@+id/seokchon"
+                                    android:layout_width="130dp"
+                                    android:layout_height="50dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:layout_marginRight="0dp"
+                                    android:src="@drawable/seokchonlake"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/fl_mainfragment_gangnam" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_trees1"
+                                    android:layout_width="16dp"
+                                    android:layout_height="22dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:layout_marginLeft="4dp"
+                                    android:src="@drawable/trees"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="@+id/seokchon" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_tree1"
+                                    android:layout_width="14dp"
+                                    android:layout_height="13dp"
+                                    android:layout_marginBottom="45dp"
+                                    android:layout_marginRight="7dp"
+                                    android:src="@drawable/tree1"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_tree2"
+                                    android:layout_width="14dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginBottom="40dp"
+                                    android:src="@drawable/tree2"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_tree3"
+                                    android:layout_width="14dp"
+                                    android:layout_height="12dp"
+                                    android:layout_marginBottom="12dp"
+                                    android:layout_marginRight="0dp"
+                                    android:src="@drawable/tree1"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="@+id/seokchon" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_rubberbuck"
+                                    android:layout_width="30dp"
+                                    android:layout_height="32dp"
+                                    android:layout_marginBottom="12dp"
+                                    android:layout_marginRight="18dp"
+                                    android:src="@drawable/rubberduck"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toLeftOf="@+id/seokchon_world" />
+
+                                <ImageView
+                                    android:id="@+id/seokchon_world"
+                                    android:layout_width="42dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginBottom="14dp"
+                                    android:layout_marginRight="14dp"
+                                    android:src="@drawable/lotteworld"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/building"
+                                    android:layout_width="26dp"
+                                    android:layout_height="25dp"
+                                    android:layout_marginBottom="65dp"
+                                    android:layout_marginLeft="88dp"
+                                    android:src="@drawable/assembly"
+                                    android:visibility="gone"
+                                    app:layout_constraintBottom_toTopOf="@+id/fl_mainfragment_guro"
+                                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/building_tree1"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="16dp"
+                                    android:layout_marginTop="137dp"
+                                    android:src="@drawable/tree1"
+                                    android:visibility="gone"
+                                    app:layout_constraintRight_toLeftOf="@+id/fl_mainfragment_gwanak"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/building_tree2"
+                                    android:layout_width="8dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="30dp"
+                                    android:layout_marginTop="95dp"
+
+                                    android:src="@drawable/tree1"
+                                    android:visibility="gone"
+                                    app:layout_constraintRight_toLeftOf="@+id/bench"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/bench"
+                                    android:layout_width="28dp"
+                                    android:layout_height="22dp"
+                                    android:layout_marginBottom="79dp"
+                                    android:layout_marginLeft="64dp"
+                                    android:src="@drawable/assembly"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/bench_tree2"
+                                    android:layout_width="12dp"
+                                    android:layout_height="14dp"
+                                    android:layout_marginBottom="90dp"
+                                    android:layout_marginLeft="12dp"
+                                    android:src="@drawable/tree2"
+                                    android:visibility="visible"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/bench" />
+
+                                <ImageView
+                                    android:id="@+id/bench_tree1"
+                                    android:layout_width="7dp"
+                                    android:layout_height="14dp"
+                                    android:layout_marginBottom="85dp"
+                                    android:layout_marginLeft="6dp"
+                                    android:src="@drawable/tree1"
+                                    android:visibility="visible"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toRightOf="@+id/bench"
+                                    app:srcCompat="@drawable/tree1" />
+
+                                <ImageView
+                                    android:id="@+id/bench_tree3"
+                                    android:layout_width="12dp"
+                                    android:layout_height="18dp"
+                                    android:layout_marginBottom="65dp"
+                                    android:layout_marginRight="34dp"
+                                    android:src="@drawable/tree2"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toLeftOf="@+id/fl_mainfragment_gwanak" />
+
+                                <ImageView
+                                    android:id="@+id/bench_tree4"
+                                    android:layout_width="15dp"
+                                    android:layout_height="12dp"
+                                    android:layout_marginBottom="64dp"
+                                    android:layout_marginRight="22dp"
+                                    android:src="@drawable/tree1"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toLeftOf="@+id/fl_mainfragment_gwanak" />
+
+
+                            </android.support.constraint.ConstraintLayout>
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/border_gray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_mainfragment_recommend"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/main_market" />
+
+                    <TextView
+                        android:id="@+id/tv_mainfragment_recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="베스트 시장"
+                        android:textAllCaps="true"
+                        android:textColor="@color/defaultTextColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_mainfragment_refresh"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right|center_vertical"
+                        android:padding="3dp"
+                        android:src="@drawable/ic_refresh" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_mainfragment_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/border_gray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_mainfragment_userranking"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/all_ranking" />
+
+                    <TextView
+                        android:id="@+id/tv_mainfragment_userranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="이달의 소통왕"
+                        android:textAllCaps="true"
+                        android:textColor="@color/defaultTextColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_mainfragment_userranking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingLeft="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@drawable/border_gray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_mainfragment_writingranking"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/all_ranking" />
+
+                    <TextView
+                        android:id="@+id/tv_mainfragment_writingranking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="베스트 스토리"
+                        android:textAllCaps="true"
+                        android:textColor="@color/defaultTextColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_mainfragment_writingranking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingLeft="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

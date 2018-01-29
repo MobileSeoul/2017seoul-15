@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_market"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.stm.user.detail.merchant.base.viewpager.SwipeDisableViewPager
+            android:id="@+id/vp_market"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:behavior_overlapTop="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/abl_market"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_behavior="com.stm.common.util.FlingBehaviorUtil">
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/ct_market"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7">
+
+                    <ImageView
+                        android:id="@+id/iv_market_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:scaleType="fitXY" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_gray_top_and_bottom"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="15dp">
+
+                                <TextView
+                                    android:id="@+id/tv_market_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical"
+                                    android:minLines="2"
+                                    android:textColor="@color/defaultTextColor"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_market_category"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/darkGray"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="right"
+                                android:layout_marginRight="15dp">
+
+                                <Button
+                                    android:id="@+id/btn_market_follow"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:background="@drawable/merchantdetail_writebutton"
+                                    android:text="즐겨찾기"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="gone" />
+
+                                <Button
+                                    android:id="@+id/btn_market_follow_cancel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:background="@drawable/merchantdetail_writebutton"
+                                    android:text="즐겨찾기취소"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="gone" />
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_market_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:background="@color/white"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical" />
+
+                            <TextView
+                                android:id="@+id/tv_market_address"
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="3"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:textColor="@color/defaultTextColor" />
+
+                            <ImageView
+                                android:layout_width="1dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_marginRight="15dp"
+                                android:layout_weight="1"
+                                android:padding="13dp"
+                                android:src="@drawable/all_arrivalmarker" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/in_market_toolbar"
+                    layout="@layout/collapsedtoolbar_market"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:layout_collapseMode="pin" />
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_market"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/border_gray_top"
+                app:layout_collapseMode="pin"
+                app:tabIndicatorColor="@color/pointColor"
+                app:tabTextColor="@color/defaultTextColor" />
+
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+

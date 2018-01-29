@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_darkgray"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_notificationdialog_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/usercreate_error"
+        android:tint="@color/pointColor" />
+
+    <TextView
+        android:id="@+id/tv_notificationdialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:textColor="@color/defaultTextColor" />
+
+    <Button
+        android:id="@+id/btn_notificationdialog_confirm"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/all_buttonclick_gray_r30"
+        android:text="확인"
+        android:textColor="@color/darkGray" />
+</LinearLayout>

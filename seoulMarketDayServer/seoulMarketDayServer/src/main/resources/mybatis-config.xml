@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- 마이바티스 설정 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+	</settings>
+
+	<!-- 타입 별칭 설정 -->
+	<typeAliases>
+		<!-- DTO -->
+		<typeAlias type="com.djunderworld.stm.common.dto.Location"
+			alias="Location"></typeAlias>
+
+		<!-- DAO -->
+		<typeAlias type="com.djunderworld.stm.common.dao.User"
+			alias="User"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.MarketCategory"
+			alias="MarketCategory"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.RegionCategory"
+			alias="RegionCategory"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Market"
+			alias="Market"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.MarketUser"
+			alias="MarketUser"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.RangeCategory"
+			alias="RangeCategory"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.MerchantFollower"
+			alias="MerchantFollower"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.MarketFollower"
+			alias="MarketFollower"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.File"
+			alias="File"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Story"
+			alias="Story"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.StoryTag"
+			alias="StoryTag"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.StoryComment"
+			alias="StoryComment"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Behavior"
+			alias="Behavior"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.UserNotification"
+			alias="UserNotification"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.FirebaseNotification"
+			alias="FirebaseNotification"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Report"
+			alias="Report"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.OpinionCategory"
+			alias="OpinionCategory"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Opinion"
+			alias="Opinion"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.ExitCategory"
+			alias="ExitCategory"></typeAlias>
+
+		<typeAlias type="com.djunderworld.stm.common.dao.Exit"
+			alias="Exit"></typeAlias>
+
+	</typeAliases>
+
+	<mappers>
+		<!-- 공통 SQL 경로 -->
+		<mapper resource="common/CommonSQL.xml" />
+
+		<!-- 매퍼 경로 -->
+		<mapper resource="app/user/UserMapper.xml" />
+		<mapper resource="app/market/MarketMapper.xml" />
+		<mapper resource="app/story/StoryMapper.xml" />
+		<mapper resource="app/file/FileMapper.xml" />
+		<mapper resource="app/storycomment/StoryCommentMapper.xml" />
+		<mapper resource="app/storytag/StoryTagMapper.xml" />
+		<mapper resource="app/marketuser/MarketUserMapper.xml" />
+		<mapper resource="app/regioncategory/RegionCategoryMapper.xml" />
+		<mapper resource="app/marketcategory/MarketCategoryMapper.xml" />
+		<mapper resource="app/merchantfollower/MerchantFollowerMapper.xml" />
+		<mapper resource="app/marketfollower/MarketFollowerMapper.xml" />
+		<mapper resource="app/behavior/BehaviorMapper.xml" />
+		<mapper resource="app/firebasenotification/FirebaseNotificationMapper.xml" />
+		<mapper resource="app/report/ReportMapper.xml" />
+		<mapper resource="app/opinion/OpinionMapper.xml" />
+		<mapper resource="app/opinioncategory/OpinionCategoryMapper.xml" />
+		<mapper resource="app/exit/ExitMapper.xml" />
+		<mapper resource="app/exitcategory/ExitCategoryMapper.xml" />
+
+	</mappers>
+
+</configuration>

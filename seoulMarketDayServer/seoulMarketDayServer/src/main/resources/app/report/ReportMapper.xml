@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.report.service.impl.ReportMapper">
+	
+	<!-- INSERT Query -->
+	<insert id="insertReport" parameterType="Report">
+		INSERT INTO reports(user_id, content_category_id, content_id)
+			VALUES(#{user.id}, #{contentCategoryId}, #{contentId} );
+	</insert>
+
+</mapper>

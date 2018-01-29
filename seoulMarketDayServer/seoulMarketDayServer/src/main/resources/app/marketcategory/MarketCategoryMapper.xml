@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.marketcategory.service.impl.MarketCategoryMapper">
+	
+	<!-- Result Map -->
+	<resultMap id="MarketCategoryResult" type="MarketCategory">
+		<id property="id" column="market_category_id" />
+		<result property="name" column="market_category_name" />
+		<result property="createdAt" column="market_category_created_at" />
+		<result property="updatedAt" column="market_category_updated_at" />
+	</resultMap>
+
+	<!-- SELECT Query -->
+	<select id="selectMarketCategoryList" resultMap="MarketCategoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/> 
+				</include>
+				FROM	market_categories mc;
+	</select>
+
+</mapper>

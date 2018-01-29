@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.behavior.service.impl.BehaviorMapper">
+	
+	<!-- Result Map -->
+	<resultMap id="BehaviorResult" type="Behavior">
+		<id property="id" column="behavior_id"/>
+		<result property="name" column="behavior_name"/>
+		<result property="createdAt" column="behavior_created_at"/>
+		<result property="updatedAt" column="behavior_updated_at"/>
+	</resultMap>
+	
+	<!-- SELECT Query -->
+	<select id="selectBehaviorById" resultMap="BehaviorResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.BehaviorColumns">
+					<property name="behaviorTableAlias" value="bh"/>
+					<property name="prefix" value="behavior_"/>
+				</include>
+				
+				FROM	behaviors	bh
+				where	bh.id	=	#{id};
+	</select>		
+
+</mapper>

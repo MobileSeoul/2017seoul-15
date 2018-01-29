@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.regioncategory.service.impl.RegionCategoryMapper">
+	
+	<!-- Result Map -->
+	<resultMap id="RegionCategoryResult" type="RegionCategory">
+		<id property="id" column="region_category_id" />
+		<result property="name" column="region_category_name" />
+		<result property="createdAt" column="region_category_created_at" />
+		<result property="updatedAt" column="region_category_updated_at" />
+	</resultMap>
+
+
+	<!-- SELECT Query -->
+	<select id="selectRegionCategoryById" resultMap="RegionCategoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+   				    <property name="prefix" value="region_category_"/> 
+				</include>
+				FROM	region_categories rc
+				where	rc.id	=	#{id};
+	</select>
+	
+
+	<select id="selectRegionCategoryList" resultMap="RegionCategoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/> 
+				</include>
+				FROM	region_categories rc
+	</select>
+</mapper>

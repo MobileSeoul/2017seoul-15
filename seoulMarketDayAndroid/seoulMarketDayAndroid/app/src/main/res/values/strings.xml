@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">서울장날</string>
+    <string name="app_version">1.0.0</string>
+    <string name="app_developer_email">godlejr12@naver.com</string>
+
+    <!-- aws cloud front (s3) url -->
+    <string name="cloud_front_user_avatar">http://d3fmxlpcykzndk.cloudfront.net/stm/images/users/avatars/</string>
+    <string name="cloud_front_user_cover">http://d3fmxlpcykzndk.cloudfront.net/stm/images/users/covers/</string>
+    <string name="cloud_front_market_avatar">http://d3fmxlpcykzndk.cloudfront.net/stm/images/markets/avatars/</string>
+
+    <string name="cloud_front_story_image">http://d3fmxlpcykzndk.cloudfront.net/stm/images/stories/</string>
+    <string name="cloud_front_story_video">http://d3fmxlpcykzndk.cloudfront.net/stm/videos/stories/</string>
+    <string name="cloud_front_story_vr360">http://d3fmxlpcykzndk.cloudfront.net/stm/vr360/stories/</string>
+
+    <string name="cloud_front_comment_image">http://d3fmxlpcykzndk.cloudfront.net/stm/images/comments/</string>
+    <string name="cloud_front_comment_video">http://d3fmxlpcykzndk.cloudfront.net/stm/videos/comments/</string>
+    <string name="cloud_front_comment_vr360">http://d3fmxlpcykzndk.cloudfront.net/stm/vr360/comments/</string>
+
+    <!-- sns login -->
+    <string name="facebook_app_id">145092156057928</string>
+    <string name="naver_client_id">3UfKURxHvdR_dH7ZVGHY</string>
+    <string name="naver_client_secret">U9J795I74V</string>
+    <string name="naver_oauth_url">https://openapi.naver.com/v1/nid/me</string>
+
+    <string name="google_directions_api_key">AIzaSyDZct_hICpRRwMhtRiBygzYxIFm1_ol-Sw</string>
+    <string name="google_map_api_key">AIzaSyAu5ZsghciKl2t1UNjQaSSiFp4e_TicLxE</string>
+</resources>

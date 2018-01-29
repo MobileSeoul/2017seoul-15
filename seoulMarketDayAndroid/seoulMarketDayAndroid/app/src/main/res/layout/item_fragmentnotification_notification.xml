@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGray"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_notification_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/border_gray_top_and_bottom">
+
+        <ImageView
+            android:id="@+id/iv_notification_useravatar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="12dp"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_notification_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_notification_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:padding="1dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:textColor="@color/darkGray"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

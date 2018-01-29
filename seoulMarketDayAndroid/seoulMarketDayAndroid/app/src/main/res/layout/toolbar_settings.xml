@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/pointColor"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/ib_toolbar_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/transparent"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/toolbar_back"
+        android:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="50dp"
+        android:gravity="center_vertical|center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</LinearLayout>

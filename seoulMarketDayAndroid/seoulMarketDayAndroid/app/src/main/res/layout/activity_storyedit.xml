@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/border_gray_bottom"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_edit_close"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/toolbar_close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="게시물 수정"
+                android:textColor="@color/defaultTextColor" />
+
+            <TextView
+                android:id="@+id/tv_edit_submit"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="저장"
+                android:textColor="@color/darkGray" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="50dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_gray_top"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="15dp">
+
+                    <EditText
+                        android:id="@+id/et_edit_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="이야기를 남겨보세요"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/defaultTextColor"
+                        android:textColorHint="@color/darkGray" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_edit_urlfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_edit_contenturifile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@color/pointColor"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ib_edit_photo"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_photo"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_edit_video"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="13dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_video"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_edit_vr"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_vr"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_edit_hashtag"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/storycreate_hashtag"
+                    android:tint="@color/white" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_edit_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/transparentBlack"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/border_darkgray"
+                android:orientation="vertical">
+
+                <SeekBar
+                    android:id="@+id/sb_edit_loader"
+                    style="@style/LoaderSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:thumb="@null" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_edit_filesize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toStartOf="@+id/textView28"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toStartOf="@+id/tv_edit_filetotalsize"
+                        android:text=" / " />
+
+                    <TextView
+                        android:id="@+id/tv_edit_filetotalsize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="11dp"
+                        android:text="0" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</FrameLayout>

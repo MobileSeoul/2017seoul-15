@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.user.service.impl.UserMapper">
+
+	<!-- Result Map -->
+	<resultMap id="UserResult" type="User">
+		<id property="id" column="user_id" />
+		<result property="email" column="user_email" />
+		<result property="name" column="user_name" />
+		<result property="phone" column="user_phone" />
+		<result property="avatar" column="user_avatar" />
+		<result property="cover" column="user_cover" />
+		<result property="intro" column="user_intro" />
+		<result property="level" column="user_level" />
+		<result property="gender" column="user_gender" />
+		<result property="fcmToken" column="user_fcm_token" />
+		<result property="deviceId" column="user_device_id" />
+		<result property="loginCategoryId" column="user_login_category_id" />
+		<result property="createdAt" column="user_created_at" />
+		<result property="updatedAt" column="user_updated_at" />
+		<result property="isFollowed" column="user_isFollowed" />
+		
+		<association property="phoneRangeCategory" resultMap="RangeCategoryResult" columnPrefix="phone_" />
+  		<association property="genderRangeCategory" resultMap="RangeCategoryResult" columnPrefix="gender_" />
+		<association property="market" resultMap="MarketResult" />
+
+	</resultMap>
+
+	<resultMap id="RangeCategoryResult" type="RangeCategory">
+		<id property="id" column="range_category_id"/>
+		<result property="name" column="range_category_name"/>
+		<result property="createdAt" column="range_category_created_at"/>
+		<result property="updatedAt" column="range_category_updated_at"/>
+	</resultMap>
+
+	<resultMap id="MarketResult" type="Market">
+		<id property="id" column="market_id" />
+
+		<result property="name" column="market_name" />
+		<result property="roadAddress" column="market_road_address" />
+		<result property="lotNumberAddress" column="market_lot_number_address" />
+		<result property="longitude" column="market_longitude" />
+		<result property="latitude" column="market_latitude" />
+		<result property="phone" column="market_phone" />
+		<result property="homepage" column="market_homepage" />
+		<result property="avatar" column="market_avatar" />
+		<result property="subName" column="market_sub_name" />
+		<result property="storeCount" column="market_store_count" />
+		<result property="titleItems" column="market_title_items" />
+		<result property="hits" column="market_hits" />
+		<result property="distance" column="market_distance" />
+		<result property="createdAt" column="market_created_at" />
+		<result property="updatedAt" column="market_updated_at" />
+		<result property="distance" column="market_distance" />
+		<result property="followerCount" column="market_follower_count" />
+		<result property="userCount" column="market_user_count" />
+		<result property="isFollowed" column="market_isFollowed" />
+
+
+		<association property="marketCategory" column="market_category_id"
+			javaType="MarketCategory" resultMap="MarketCategoryResult" />
+
+		<association property="regionCategory" column="region_category_id"
+			javaType="RegionCategory" resultMap="RegionCategoryResult" />
+			
+
+	</resultMap>
+
+
+	<resultMap id="MarketCategoryResult" type="MarketCategory">
+		<id property="id" column="market_category_id" />
+		<result property="name" column="market_category_name" />
+		<result property="createdAt" column="market_category_created_at" />
+		<result property="updatedAt" column="market_category_updated_at" />
+	</resultMap>
+
+	<resultMap id="RegionCategoryResult" type="RegionCategory">
+		<id property="id" column="region_category_id" />
+		<result property="name" column="region_category_name" />
+		<result property="createdAt" column="region_category_created_at" />
+		<result property="updatedAt" column="region_category_updated_at" />
+	</resultMap>
+
+
+	<!-- SELECT Query -->
+	<select id="selectCheckByEmail" resultType="Boolean">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+			<property name="alias" value="count"/>
+		    <property name="table" value="users"/>
+		    <property name="column" value="email"/>
+		</include> #{email}
+		<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+		    <property name="column" value="login_category_id"/> 
+		</include> 1
+	</select>
+	
+	<select id="selectBestMerchantListPerMonthLimitFive" resultMap="UserResult">
+		SELECT 	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>				
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+   					<property name="prefix" value="market_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+   					<property name="prefix" value="market_category_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+					<property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+				
+				FROM	stories	st,
+						market_users	mu,
+						markets	mk,
+						users	us,
+						range_categories	pr,
+						range_categories	gr,
+						market_categories mc,
+						region_categories rc
+			    
+			    where	us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+			    		mu.user_id	=	us.id	and
+			    		us.id	=	st.user_id	and
+			    		mu.market_id	=	mk.id	and
+			    		mk.region_category_id	=	rc.id	and
+						mk.market_category_id	=	mc.id	and
+						month(st.created_at) = month(now())
+				
+			    group by st.user_id
+			    
+			    order by count(st.id) desc
+			    
+			    limit	5
+	    
+    
+	
+	</select>
+	
+	<select id="selectUserByEmailAndPassword" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>				
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>
+				
+				FROM	users	us,
+						range_categories	pr,
+						range_categories	gr
+						
+				where	us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+						us.email	=	#{email}	and
+						us.password	=	#{password};
+	</select>
+	
+	<select id="selectFollowerFcmTonkenListByMerchantId" resultType="User">
+		SELECT	us.id	as	id,
+				us.fcm_token	as	fcm_token
+				
+				FROM	users	us,
+						merchant_followers	mf
+						
+				where	mf.user_id	=	us.id	and
+						mf.merchant_id	=	#{merchantId}
+	</select>
+	
+	<select id="selectFollowerListByMerchantIdAndOffset" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>
+				
+				FROM	users	us,
+						range_categories	pr,
+						range_categories	gr,
+						merchant_followers	mf
+						
+				where	mf.user_id	=	us.id	and
+						us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+						mf.merchant_id	=	#{merchantId}
+	</select>
+
+	
+	<select id="selectUserById" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>
+				
+				FROM	users	us,
+						range_categories	pr,
+						range_categories	gr
+						
+				where	us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+						us.id	=	#{id}
+	</select>
+	
+	<select id="selectFollowingMerchantListByIdAndOffset" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/> 
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="count"/>
+				    <property name="table" value="merchant_followers"/>
+				    <property name="column" value="merchant_id"/>
+				</include> us.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{id}) as user_isFollowed	
+				
+				FROM	users	us,
+						range_categories	pr,
+						range_categories	gr,
+						merchant_followers	mf
+						
+				where	us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+						mf.merchant_id	=	us.id	and
+						mf.user_id	=	#{id}
+						
+				order by	us.id	asc
+				LIMIT	20	OFFSET	#{offset};	
+	</select>
+	
+	<select id="selectUserListByKeywordAndOffset" resultMap="UserResult" >
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/> 
+				</include>
+				
+				FROM	users	us
+						
+				where	us.name	like	CONCAT('%', #{keyword},'%')	or
+						us.email	like	CONCAT('%', #{keyword},'%')
+						
+				order by	us.id	asc
+				LIMIT	20	OFFSET	#{offset};	
+	</select>
+	
+	
+	<select id="selectUserByEmail" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/> 
+				</include>
+				
+				FROM	users	us
+						
+				where	us.email	=	#{email};
+	</select>
+	
+	<select id="selectMerchantListByMarketIdAndOffset" resultMap="UserResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/> 
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr"/>
+					<property name="prefix" value="phone_range_category_"/>
+				</include>,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr"/>
+					<property name="prefix" value="gender_range_category_"/>
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="count"/>
+				    <property name="table" value="merchant_followers"/>
+				    <property name="column" value="merchant_id"/>
+				</include> us.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId}) as user_isFollowed	
+				
+				FROM	users	us,
+						range_categories	pr,
+						range_categories	gr,
+						market_users	mu
+						
+				where	us.gender_range_category_id	=	gr.id	and
+						us.phone_range_category_id	=	pr.id 	and 
+						mu.market_id	=	#{marketId}	and
+						us.id	=	mu.user_id
+						
+				order by	us.id	asc
+				LIMIT	20	OFFSET	#{offset};	
+	</select>
+	
+	<!-- INSERT Query -->
+	<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		INSERT	INTO	users (email, password, name, level, fcm_token, device_id, login_category_id) 
+			VALUES ( #{email}, #{password}, #{name}, #{level}, #{fcmToken}, #{deviceId}, #{loginCategoryId});
+	</insert>
+	
+	<!-- UPDATE Query -->
+	<update id="updateUserById" parameterType="User">
+		update	users
+			 <set>
+		      <if test="password != null">	password	=	#{password},	</if>
+		      <if test="name != null">	name	=	#{name},	</if>
+		      <if test="phone != null">	phone	=	#{phone},	</if>
+		      <if test="avatar != null">	avatar	=	#{avatar},	</if>
+		      <if test="cover != null">	cover	=	#{cover},	</if>
+		      <if test="intro != null">	intro	=	#{intro},	</if>
+		      <if test="level > 0">	level	=	#{level},	</if>
+		      <if test="gender > 0">	gender	=	#{gender},	</if>
+		      <if test="fcmToken != null">	fcm_token	=	#{fcmToken},	</if>
+		      <if test="deviceId != null">	device_id	=	#{deviceId},	</if>
+		      <if test="phoneRangeCategory != null">	phone_range_category_id	=	#{phoneRangeCategory.id},	</if>
+		      <if test="genderRangeCategory != null">	gender_range_category_id	=	#{genderRangeCategory.id}	</if>
+		    </set>
+		    where	id	=	#{id}
+	</update>
+</mapper>

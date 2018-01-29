@@ -1,0 +1,65 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/pointColor</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">#000</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#424242</item>
+
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlActivated">#c8c8c8</item>
+        <item name="colorControlHighlight">#c8c8c8</item>
+        <item name="windowActionBar">false</item>
+        <item name="vpiCirclePageIndicatorStyle">@style/CirclePageIndicator</item>
+    </style>
+
+    <style name="Base.Widget.AppCompat.Toolbar" parent="android:Widget">
+        <item name="titleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Title</item>
+        <item name="subtitleTextAppearance">
+            @style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle
+        </item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="titleMargins">4dp</item>
+        <item name="maxButtonHeight">56dp</item>
+        <item name="collapseIcon">?attr/homeAsUpIndicator</item>
+        <item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <style name="VideoPlayerSeekBar" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/videoplayer_seekbar</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">8dp</item>
+        <item name="android:maxHeight">10dp</item>
+    </style>
+
+    <style name="LoaderSeekBar" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/loader_seekbar</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">10dp</item>
+        <item name="android:maxHeight">12dp</item>
+    </style>
+
+
+    <!-- Indicator -->
+    <style name="CirclePageIndicator">
+        <item name="fillColor">@color/darkGray</item>
+        <item name="radius">3dp</item>
+        <item name="centered">true</item>
+    </style>
+
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/pointColor</item>
+        <item name="colorSwitchThumbNormal">#ffffff</item>
+        <item name="android:colorForeground">#939393</item>
+    </style>
+
+
+
+
+</resources>

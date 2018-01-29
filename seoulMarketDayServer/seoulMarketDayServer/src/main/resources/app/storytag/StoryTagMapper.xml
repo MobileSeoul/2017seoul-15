@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.storytag.service.impl.StoryTagMapper">
+
+	<!-- INSERT Query -->
+	<insert id="insertStoryTags" parameterType="java.util.List">
+		<if test="storyTags.size > 0">
+			INSERT INTO story_tags (story_id, tag_name)
+			VALUES
+			<foreach collection="storyTags" item="storyTag" separator=",">
+				(#{storyTag.story.id}, #{storyTag.tagName})
+			</foreach>
+		</if>
+	</insert>
+	
+	
+	<!-- DELETE Query -->
+	<delete id="deleteStoryTagByStoryId">
+		delete	from	story_tags
+				where	story_id	=	#{storyId}
+	</delete>
+</mapper>

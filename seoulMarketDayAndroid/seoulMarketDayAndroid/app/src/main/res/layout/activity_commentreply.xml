@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/in_commentreply_toolbar"
+            layout="@layout/toolbar_all_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsv_commentreply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_commentreply"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:text="" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@drawable/border_gray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingLeft="8dp">
+
+                        <ImageView
+                            android:id="@+id/iv_commentreply_photo"
+                            android:layout_width="32dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@color/transparent"
+                            android:padding="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/all_photo"
+                            android:tint="@color/darkGray" />
+
+                        <ImageView
+                            android:id="@+id/iv_commentreply_video"
+                            android:layout_width="32dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@color/transparent"
+                            android:padding="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/all_video"
+                            android:tint="@color/darkGray" />
+
+
+                        <ImageView
+                            android:id="@+id/iv_commentreply_vr"
+                            android:layout_width="35dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/transparent"
+                            android:padding="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/all_vr"
+                            android:tint="@color/darkGray" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/et_commentreply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_weight="1"
+                        android:background="@color/transparent"
+                        android:ems="10"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/defaultTextColor"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_commentreply_write"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_commentreply_write"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@color/transparent"
+                            android:padding="12dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/comment_write"
+                            android:tint="@color/darkGray" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_commentreply_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/transparentBlack"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/border_darkgray"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_commentreply_loadermessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp" />
+
+                <SeekBar
+                    android:id="@+id/sb_commentreply_loader"
+                    style="@style/LoaderSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:thumb="@null" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

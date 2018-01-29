@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.merchantfollower.service.impl.MerchantFollowerMapper">
+	
+	<!-- SELECT Query -->
+	<select id="selectMerchantFollowerCountByMerchantId" resultType="int">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+			<property name="alias" value="count"/>
+		    <property name="table" value="merchant_followers"/>
+		    <property name="column" value="merchant_id"/>
+		</include> #{merchantId}
+	</select>
+	
+	<select id="selectFollowCheckByMerchantIdAndUserId" resultType="Boolean">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+			<property name="alias" value="count"/>
+		    <property name="table" value="merchant_followers"/>
+		    <property name="column" value="merchant_id"/>
+		</include> #{merchantId}
+		<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+		    <property name="column" value="user_id"/> 
+		</include> #{userId}
+	</select>
+	
+	
+	<!-- INSERT Query -->
+	<insert id="insertMerchantFollower" parameterType="MerchantFollower">
+		insert	into	merchant_followers(merchant_id, user_id)
+			values(#{merchant.id}, #{user.id})
+	</insert>
+	
+	
+	<!-- DELETE Query -->
+	<delete id="deleteMerchantFollower" parameterType="MerchantFollower">
+		delete	from	merchant_followers
+				where	merchant_id	=	#{merchant.id}	and
+						user_id	=	#{user.id}
+	</delete>
+</mapper>

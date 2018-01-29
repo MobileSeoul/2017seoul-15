@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.firebasenotification.service.impl.FirebaseNotificationMapper">
+	<!-- Result Map -->
+	<resultMap id="FirebaseNotificationResult" type="FirebaseNotification">
+		<id property="id" column="notification_id" />
+		<result property="receiverId" column="notification_receiver_id" />
+		<result property="receiverCategoryId" column="notification_receiver_category_id" />
+		<result property="content" column="notification_content" />
+		<result property="navigationId" column="notification_navigation_id" />
+		<result property="navigationCategoryId" column="notification_navigation_category_id" />
+		<result property="checked" column="notification_checked" />
+		<result property="createdAt" column="notification_created_at" />
+		<result property="updatedAt" column="notification_updated_at" />
+		
+		<association property="user" resultMap="UserResult" />
+		<association property="behavior" resultMap="BehaviorResult" />
+
+	</resultMap>
+	
+	<resultMap id="UserResult" type="User">
+		<id property="id" column="user_id" />
+		<result property="email" column="user_email" />
+		<result property="name" column="user_name" />
+		<result property="phone" column="user_phone" />
+		<result property="avatar" column="user_avatar" />
+		<result property="cover" column="user_cover" />
+		<result property="intro" column="user_intro" />
+		<result property="level" column="user_level" />
+		<result property="gender" column="user_gender" />
+		<result property="fcmToken" column="user_fcm_token" />
+		<result property="deviceId" column="user_device_id" />
+		<result property="loginCategoryId" column="user_login_category_id" />
+		<result property="createdAt" column="user_created_at" />
+		<result property="updatedAt" column="user_updated_at" />
+	</resultMap>
+	
+	<resultMap id="BehaviorResult" type="Behavior">
+		<id property="id" column="behavior_id"/>
+		<result property="name" column="behavior_name"/>
+		<result property="createdAt" column="behavior_created_at"/>
+		<result property="updatedAt" column="behavior_updated_at"/>
+	</resultMap>
+	
+	<!-- SELECT Query -->
+	<select id="selectFirebaseNotificationListByUserIdAndOffset" resultMap="FirebaseNotificationResult">
+		select	<include refid="com.djunderworld.stm.engine.db.common.sql.NotificationColumns">
+					<property name="notificationTableAlias" value="fn"/>
+					<property name="prefix" value="notification_"/>
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>				
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.BehaviorColumns">
+					<property name="behaviorTableAlias" value="bh"/>
+					<property name="prefix" value="behavior_"/>
+				</include>
+				
+				FROM	user_notifications	un,
+						firebase_notifications	fn,
+						users	us,
+			            behaviors	bh
+						
+				where	un.user_id	=	#{userId}	and
+						un.firebase_notification_id	=	fn.id	and
+			            fn.behavior_id	=	bh.id	and
+						fn.user_id	=	us.id	
+			            
+				order by	un.created_at	desc
+				
+				LIMIT	20	OFFSET	#{offset};
+	</select>
+	
+	<!-- INSERT Query -->
+	<insert id="insertFirebaseNotification" parameterType="FirebaseNotification" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO firebase_notifications(user_id, receiver_id, receiver_category_id, content, navigation_id, navigation_category_id, behavior_id) 
+			VALUES (#{user.id},#{receiverId},#{receiverCategoryId},#{content},#{navigationId},#{navigationCategoryId},#{behavior.id});
+	</insert>
+
+	<insert id="insertUserNotificationByfirebaseNotificationIdAndUsers">
+		<if test="users.size > 0">
+			INSERT INTO user_notifications (user_id, firebase_notification_id) 
+				VALUES 
+				<foreach collection="users" item="user" separator=",">
+					(#{user.id}, #{firebaseNotificationId})
+				</foreach>		
+		</if>
+	</insert>
+	
+	<!-- UPDATE Query -->
+	<update id="updateFirebaseNotification" parameterType="FirebaseNotification">
+		update	firebase_notifications
+		 	<set>
+	      		<if test="checked > 0">	checked	=	#{checked}	</if>
+		    </set>
+		    where	id	=	#{id}
+	</update>
+	
+	<!-- DELETE Query -->
+	<delete id="deleteFirebaseNotificationRegardingStoryByStoryId">
+		delete	from	firebase_notifications
+				where	navigation_category_id	=	1	and
+						navigation_id	=	#{storyId}
+	</delete>
+	
+	<delete id="deleteFirebaseNotificationRegardingMerchantFollower" parameterType="MerchantFollower" >
+		delete	from	firebase_notifications
+				where	behavior_id	=	4	and
+						user_id	=	#{user.id}	and
+						receiver_id	=	#{merchant.id}
+	</delete>
+	
+	<delete id="deleteFirebaseNotificationRegardingStoryLikeByStoryIdAndUserId">
+		delete	from	firebase_notifications
+				where	navigation_category_id	=	1	and
+						behavior_id	=	3	and
+						user_id	=	#{userId}	and
+						navigation_id	=	#{storyId}
+	</delete>
+</mapper>

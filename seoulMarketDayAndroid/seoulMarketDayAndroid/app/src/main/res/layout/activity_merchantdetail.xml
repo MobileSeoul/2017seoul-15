@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/srl_merchantdetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/lightGray"
+        android:orientation="vertical">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/abl_merchantdetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_behavior="com.stm.common.util.FlingBehaviorUtil">
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/ct_merchantdetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:minHeight="390dp"
+                    app:layout_collapseMode="parallax">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp">
+
+                            <ImageView
+                                android:id="@+id/iv_merchantdetail_cover"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <Button
+                                    android:id="@+id/btn_merchantdetail_write"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="bottom|right"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/merchantdetail_writebutton"
+                                    android:text="글쓰기"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="gone" />
+
+                                <Button
+                                    android:id="@+id/btn_merchantdetail_follow"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="bottom|right"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/merchantdetail_writebutton"
+                                    android:text="팔로우"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="gone" />
+
+                                <Button
+                                    android:id="@+id/btn_merchantdetail_follow_cancel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_gravity="bottom|right"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginRight="15dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/merchantdetail_writebutton"
+                                    android:text="팔로우취소"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="gone" />
+                            </FrameLayout>
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="190dp"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginBottom="11dp"
+                                android:layout_marginTop="70dp"
+                                android:orientation="vertical"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp">
+
+                                <TextView
+                                    android:id="@+id/tv_merchantdetail_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:textColor="@color/defaultTextColor"
+                                    android:textSize="20sp" />
+
+
+                                <TextView
+                                    android:id="@+id/tv_merchantdetail_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center"
+                                    android:textColor="@color/darkGray"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_merchantdetail_market"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/darkGray"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_merchantdetail_intro"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="60"
+                                    android:minLines="3"
+                                    android:singleLine="false"
+                                    android:textColor="@color/defaultTextColor"
+                                    android:textSize="14sp"
+                                    android:linksClickable="true"
+                                    android:autoLink="web"
+                                    android:textColorLink="#303f9f"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_merchantdetail_avatar"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
+
+                </FrameLayout>
+
+                <include
+                    android:id="@+id/in_merchantdetail_toolbar"
+                    layout="@layout/collapsedtoolbar_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="pin" />
+
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_merchantdetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                app:layout_collapseMode="pin"
+                app:tabIndicatorColor="@color/pointColor"
+                app:tabTextColor="@color/defaultTextColor" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <com.stm.user.detail.merchant.base.viewpager.SwipeDisableViewPager
+            android:id="@+id/vp_merchantdetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:behavior_overlapTop="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

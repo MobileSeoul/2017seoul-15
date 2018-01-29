@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_write_close"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/toolbar_close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="글쓰기"
+                android:textColor="@color/defaultTextColor" />
+
+            <TextView
+                android:id="@+id/tv_write_submit"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="게시"
+                android:textColor="@color/darkGray" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="50dp"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_gray_top"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="15dp">
+
+                    <EditText
+                        android:id="@+id/et_write_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="이야기를 남겨보세요"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/defaultTextColor"
+                        android:textColorHint="@color/darkGray" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_write_multimedia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@color/pointColor"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/ib_write_photo"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_photo"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_write_video"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="13dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_video"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_write_vr"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_vr"
+                    android:tint="@color/white" />
+
+                <ImageButton
+                    android:id="@+id/ib_write_hashtag"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/storycreate_hashtag"
+                    android:tint="@color/white" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_write_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/transparentBlack"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/border_darkgray"
+                android:orientation="vertical">
+
+                <SeekBar
+                    android:id="@+id/sb_write_loader"
+                    style="@style/LoaderSeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:thumb="@null" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_write_filesize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_write_filetotalsize"
+                        android:layout_alignBottom="@+id/tv_write_filetotalsize"
+                        android:layout_toStartOf="@+id/textView33"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/tv_write_filesize"
+                        android:layout_alignBottom="@+id/tv_write_filesize"
+                        android:layout_toStartOf="@+id/tv_write_filetotalsize"
+                        android:text=" / " />
+
+                    <TextView
+                        android:id="@+id/tv_write_filetotalsize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="11dp"
+                        android:text="0" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</FrameLayout>

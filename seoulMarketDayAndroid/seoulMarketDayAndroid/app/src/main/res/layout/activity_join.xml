@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/in_join_toolbar"
+        layout="@layout/toolbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:background="@drawable/border_gray"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="이메일"
+                    android:textColor="@color/darkGray"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_join_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="이메일"
+                    android:inputType="textEmailAddress|textPersonName"
+                    android:textColor="@color/defaultTextColor"
+                    android:textColorHint="@color/darkGray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="비밀번호"
+                    android:textColor="@color/darkGray"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_join_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호 (8자 이상)"
+                    android:inputType="textPassword"
+                    android:textColor="@color/defaultTextColor"
+                    android:textColorHint="@color/darkGray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="비밀번호 확인"
+                    android:textColor="@color/darkGray"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_join_pwdconfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="비밀번호 확인 (8자 이상)"
+                    android:inputType="textPassword"
+                    android:textColor="@color/defaultTextColor"
+                    android:textColorHint="@color/darkGray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="이름"
+                    android:textColor="@color/darkGray"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_join_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:hint="이름"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/defaultTextColor"
+                    android:textColorHint="@color/darkGray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="이용약관, 개인정보 수집 및 이용에 동의합니다."
+                    android:textColor="@color/darkGray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btn_join"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@drawable/all_buttonclick_gray_r30"
+                    android:text="가입완료"
+                    android:textColor="@color/darkGray"
+                    android:textSize="17sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

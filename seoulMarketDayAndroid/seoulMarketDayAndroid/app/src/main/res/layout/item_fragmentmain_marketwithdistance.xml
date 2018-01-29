@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_market_info_with_distance"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_market_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border_black_with_transparent_bg"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/all_foot"
+                    android:tint="#fff" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_market_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/in_item_fragmentmain_market"
+            layout="@layout/item_fragmentmain_market"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+    </FrameLayout>
+
+</LinearLayout>

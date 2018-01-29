@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.exitcategory.service.impl.ExitCategoryMapper">
+	
+	<!-- Result Map -->
+	<resultMap id="ExitCategoryResult" type="ExitCategory">
+		<id property="id" column="exit_category_id" />
+		<result property="name" column="exit_category_name" />
+		<result property="createdAt" column="exit_category_created_at" />
+		<result property="updatedAt" column="exit_category_updated_at" />
+	</resultMap>
+
+	<!-- SELECT Query -->
+	<select id="selectExitCategoryList" resultMap="ExitCategoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.ExitCategoryColumns">
+				    <property name="exitCategoryTableAlias" value="ec"/>
+				    <property name="prefix" value="exit_category_"/> 
+				</include>
+				FROM	exit_categories ec;
+	</select>
+
+</mapper>

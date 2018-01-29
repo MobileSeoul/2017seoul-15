@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "530550046372",
+    "firebase_url": "https://seoul-traditional-market-50f9e.firebaseio.com",
+    "project_id": "seoul-traditional-market-50f9e",
+    "storage_bucket": "seoul-traditional-market-50f9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530550046372:android:fe4e718128c9c640",
+        "android_client_info": {
+          "package_name": "com.stm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530550046372-nfe9g4pqr7a9vl2rq2d58n9jdkkp389m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFEylEUjktaBX-NsmBF8I0evfySVQrrxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530550046372-nfe9g4pqr7a9vl2rq2d58n9jdkkp389m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

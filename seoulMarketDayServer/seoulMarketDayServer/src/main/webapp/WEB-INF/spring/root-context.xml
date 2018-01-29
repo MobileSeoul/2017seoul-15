@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security/spring-context .xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<context:component-scan
+		base-package="com.djunderworld.stm.common.utils.impl.JwtUtilImpl" />
+	<context:annotation-config />
+
+	<!-- 프로퍼티 설정 -->
+	<util:properties id="db"
+		location="/WEB-INF/properties/jdbc.properties" />
+	<util:properties id="aws"
+		location="/WEB-INF/properties/aws.properties" />
+	<util:properties id="jwt"
+		location="/WEB-INF/properties/jwt.properties" />
+	<util:properties id="fcm"
+		location="/WEB-INF/properties/fcm.properties" />
+	<util:properties id="mail"
+		location="/WEB-INF/properties/mail.properties" />
+
+
+	<!-- 데이터베이스 설정 -->
+	<beans:bean name="stmDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="#{db['jdbc.driverClassName']}"></beans:property>
+		<beans:property name="url" value="#{db['jdbc.url']}"></beans:property>
+		<beans:property name="username" value="#{db['jdbc.username']}"></beans:property>
+		<beans:property name="password" value="#{db['jdbc.password']}"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="stmSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="stmDataSource"></beans:property>
+		<beans:property name="configLocation" value="classpath:mybatis-config.xml"></beans:property>
+	</beans:bean>
+
+	<beans:bean id="stmSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0"
+			ref="stmSqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+
+	<!-- sql쿼리 로그 -->
+	<beans:bean id="stmDataSourceLog" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<beans:constructor-arg ref="stmDataSource" />
+		<beans:property name="logFormatter">
+			<beans:bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<beans:property name="loggingType" value="MULTI_LINE" />
+				<beans:property name="sqlPrefix" value="SQL         :  " />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<!-- 트랜잭션 -->
+	<beans:bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="stmDataSource"></beans:property>
+	</beans:bean>
+
+	<!-- 매퍼 스캔 -->
+	<beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<beans:property name="basePackage" value="com.djunderworld.stm" />
+		<beans:property name="annotationClass"
+			value="org.springframework.stereotype.Repository" />
+		<beans:property name="sqlSessionFactory" ref="stmSqlSessionFactory"></beans:property>
+	</beans:bean>
+
+	<!-- 예외 뷰 리졸버 -->
+	<beans:bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key=".AccessDeniedException">home</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<!-- AWS 관련 설정 -->
+	<beans:bean id="basicAWSCredentials" class="com.amazonaws.auth.BasicAWSCredentials">
+		<beans:constructor-arg value="#{aws['aws.accessKey']}" />
+		<beans:constructor-arg value="#{aws['aws.secretKey']}" />
+	</beans:bean>
+
+	<beans:bean id="amazonS3Client" class="com.amazonaws.services.s3.AmazonS3Client">
+		<beans:constructor-arg ref="basicAWSCredentials" />
+		<beans:property name="endpoint" value="#{aws['aws.s3.endPoint']}" />
+	</beans:bean>
+
+	<!-- 구글 메일 설정 -->
+	<beans:bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="#{mail['mail.host']}" />
+		<beans:property name="port" value="#{mail['mail.port']}" />
+		<beans:property name="username" value="#{mail['mail.address']}" />
+		<beans:property name="password" value="#{mail['mail.password']}" />
+
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">false</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<!-- 스프링 시큐리티 예외 -->
+	<security:http pattern="/" security="none" />
+	<security:http pattern="/marketcategories/**" security="none" />
+	<security:http pattern="/regioncategories/**" security="none" />
+	<security:http pattern="/**/*.json" security="none" />
+	<security:http pattern="/**/**/*.json" security="none" />
+	<security:http pattern="/files/**/hits" security="none" />
+	<security:http pattern="/users/" security="none" />
+	<security:http pattern="/users/resetPassword" security="none" />
+
+	<security:http pattern="/**" create-session="stateless"
+		entry-point-ref="restServicesEntryPoint">
+		<security:custom-filter ref="jwtAuthenticationFilter"
+			position="FORM_LOGIN_FILTER" />
+		<security:csrf disabled="true" />
+	</security:http>
+
+	<!-- 멀티파트 리졸버 설정 -->
+	<beans:bean id="filterMultipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="104857600" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+
+	<!-- restTemplate 설정 -->
+	<beans:bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean
+					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<beans:bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<beans:constructor-arg value="UTF-8" />
+				</beans:bean>
+				<beans:bean
+					class="org.springframework.http.converter.ResourceHttpMessageConverter" />
+				<beans:bean
+					class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+				<beans:bean
+					class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+				<beans:bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+
+	<!-- Spring Security 인증 관련 설정(JWT) -->
+	<beans:bean id="restServicesEntryPoint"
+		class="com.djunderworld.stm.common.security.RestAuthenticationEntryPoint" />
+
+	<beans:bean id="jwtAuthenticationFilter"
+		class="com.djunderworld.stm.common.security.JwtAuthenticationFilter">
+		<beans:constructor-arg value="/**">
+		</beans:constructor-arg>
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+	</beans:bean>
+
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="jwtAuthenticationProvider" />
+	</security:authentication-manager>
+
+	<beans:bean id="jwtAuthenticationProvider"
+		class="com.djunderworld.stm.common.security.JwtAuthenticationProvider" />
+
+</beans:beans>

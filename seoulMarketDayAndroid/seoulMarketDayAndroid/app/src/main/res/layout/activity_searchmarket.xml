@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/in_searchmarket_toolbar"
+        layout="@layout/toolbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_gray_bottom"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:src="@drawable/toolbar_search"
+                android:tint="@color/defaultTextColor" />
+
+            <EditText
+                android:id="@+id/et_searchmarket"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:hint="시장을 입력해주세요"
+                android:inputType="textPersonName"
+                android:textColor="@color/defaultTextColor"
+                android:textColorHint="@color/darkGray"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_searchmarket_clear"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:src="@drawable/toolbar_close"
+                android:tint="@color/defaultTextColor" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv_searchmarket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_searchmarket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <LinearLayout
+                    android:id="@+id/ll_searchmarket_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="25dp"
+                        android:gravity="center"
+                        android:text="일치하는 시장이 없습니다."
+                        android:textColor="@color/darkGray" />
+
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

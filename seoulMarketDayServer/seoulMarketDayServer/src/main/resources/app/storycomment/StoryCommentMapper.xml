@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.storycomment.service.impl.StoryCommentMapper">
+	
+	<!-- Result Map -->
+	
+	<resultMap id="StoryCommentResult" type="StoryComment">
+		<id property="id" column="story_comment_id"/>
+		<result property="groupId" column="story_comment_group_id"/>
+		<result property="depth" column="story_comment_depth"/>
+		<result property="position" column="story_comment_position"/>
+		<result property="content" column="story_comment_content"/>
+		<result property="replyCommentCount" column="story_comment_reply_comment_count"/>		
+		<result property="createdAt" column="story_comment_created_at"/>
+		<result property="updatedAt" column="story_comment_updated_at"/>
+		
+		<association property="user" resultMap="UserResult" />
+		<association property="file" resultMap="FileResult" />
+	</resultMap>
+	
+	<resultMap id="UserResult" type="User">
+		<id property="id" column="user_id" />
+		<result property="email" column="user_email" />
+		<result property="name" column="user_name" />
+		<result property="phone" column="user_phone" />
+		<result property="avatar" column="user_avatar" />
+		<result property="cover" column="user_cover" />
+		<result property="intro" column="user_intro" />
+		<result property="level" column="user_level" />
+		<result property="gender" column="user_gender" />
+		<result property="fcmToken" column="user_fcm_token" />
+		<result property="deviceId" column="user_device_id" />
+		<result property="loginCategoryId" column="user_login_category_id" />
+		<result property="createdAt" column="user_created_at" />
+		<result property="updatedAt" column="user_updated_at" />
+	</resultMap>
+	
+	<resultMap id="FileResult" type="File">
+		<id property="id" column="file_id" />
+		<result property="postCategoryId" column="file_post_category_id" />
+		<result property="type" column="file_type" />
+		<result property="name" column="file_name" />
+		<result property="ext" column="file_ext" />
+		<result property="size" column="file_size" />
+		<result property="hits" column="file_hits" />
+		<result property="createdAt" column="file_created_at" />
+		<result property="updatedAt" column="file_updated_at" />
+	</resultMap>
+	
+	<!-- SELECT Query -->
+	<select id="selectStoryCommentListByStoryIdAndUserIdAndOffset" resultMap="StoryCommentResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryCommentColumns">
+					<property name="storyCommentTableAlias" value="sc"/>
+					<property name="prefix" value="story_comment_"/>				
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fc"/>
+					<property name="prefix" value="file_"/>				
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>				
+				</include>,
+				
+				((<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_reply_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="group_id" />
+				</include>
+				sc.group_id) -1) as story_comment_reply_comment_count
+				
+				FROM	users	us,
+						story_comments	sc
+				LEFT JOIN	(SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+										<property name="fileTableAlias" value="fi"/>
+										<property name="prefix" value=""/>				
+									</include>,
+									cf.comment_id	comment_id
+									
+									FROM	files fi,
+											comment_files cf
+									
+									WHERE	fi.id	=	cf.file_id	and
+											fi.type	!=	2) fc
+				ON	sc.id	=	fc.comment_id
+				
+				where	sc.user_id	=	us.id	and
+						sc.position	<![CDATA[ < ]]> 2	and
+						sc.story_id	= #{storyId}
+				
+				order by	<if test="userId > 0">	
+								CASE	
+									WHEN	story_comment_reply_comment_count = 0 
+									THEN	sc.user_id = #{userId} and 
+											sc.depth = 0 
+								END desc,
+							</if>
+						 sc.group_id,  sc.depth asc 
+						
+				LIMIT	20	OFFSET	#{offset};	
+				
+	</select>		
+	
+	<select id="selectStoryCommentReplyListByGroupIdAndUserIdAndOffset" resultMap="StoryCommentResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryCommentColumns">
+					<property name="storyCommentTableAlias" value="sc"/>
+					<property name="prefix" value="story_comment_"/>				
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fc"/>
+					<property name="prefix" value="file_"/>				
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us"/>
+					<property name="prefix" value="user_"/>				
+				</include>
+				
+				FROM	users	us,
+						story_comments	sc
+				LEFT JOIN	(SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+										<property name="fileTableAlias" value="fi"/>
+										<property name="prefix" value=""/>				
+									</include>,
+									cf.comment_id	comment_id
+									
+									FROM	files fi,
+											comment_files cf
+									
+									WHERE	fi.id	=	cf.file_id	and
+											fi.type	!=	2) fc
+				ON	sc.id	=	fc.comment_id
+				
+				where	sc.user_id	=	us.id	and
+						sc.depth	=	1	and
+						sc.group_id	= #{groupId}
+				
+				order by	<if test="userId > 0">	
+								sc.user_id = #{userId}  desc,
+							</if>
+						sc.position asc 
+						
+				LIMIT	20	OFFSET	#{offset};	
+	
+	</select>
+	
+	<select id="selectMaxGroupId" resultType="long">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectMaxWithoutWhere">
+			<property name="field" value="group_id" />
+			<property name="alias" value="story_comment_group_id" />
+			<property name="table" value="story_comments" />
+		</include>
+	</select>
+	
+	<select id="selectMaxPositionByGroupId" resultType="long">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectMax">
+			<property name="field" value="position" />
+			<property name="alias" value="story_comment_position" />
+			<property name="table" value="story_comments" />
+			<property name="column" value="group_id" />
+		</include> #{groupId}
+	</select>
+	
+	
+	<!-- INSERT Query -->
+	<insert id="insertComment" parameterType="StoryComment" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO story_comments(story_id, user_id, group_id, depth, position, content) VALUES
+		(#{story.id}, #{user.id}, #{groupId}, #{depth}, #{position}, #{content});
+	</insert>
+	
+	<insert id="insertCommentFile">
+		INSERT INTO comment_files(comment_id, file_id) VALUES
+		(#{storyCommentId}, #{fileId});		
+	</insert>
+
+	<!-- UPDATE Query -->
+	<update id="updateStoryComment" parameterType="StoryComment">
+		update	story_comments
+			set	content	=	#{content}
+		    where	id	=	#{id}	
+	</update>
+	
+	
+	<!-- DELETE Query -->
+	<delete id="deleteStoryCommentById">
+		delete	from	story_comments
+				where	id =	#{id};
+	</delete>
+
+	<delete id="deleteStoryCommentByGroupId">
+		delete	from	story_comments
+				where	group_id =	#{groupId};
+	</delete>
+	
+
+</mapper>
+
+

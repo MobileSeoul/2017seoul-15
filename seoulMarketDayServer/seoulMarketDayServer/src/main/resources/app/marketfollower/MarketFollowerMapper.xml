@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.marketfollower.service.impl.MarketFollowerMapper">
+	
+	<!-- INSERT Query -->
+	<insert id="insertMarketFollower" parameterType="MarketFollower">
+		insert	into	market_followers(market_id, user_id)
+			values(#{market.id}, #{follower.id})
+	</insert>
+	
+	
+	<!-- DELETE Query -->
+	<delete id="deleteMarketFollower" parameterType="MarketFollower">
+		delete	from	market_followers
+				where	market_id	=	#{market.id}	and
+						user_id	=	#{follower.id}
+	</delete>
+</mapper>

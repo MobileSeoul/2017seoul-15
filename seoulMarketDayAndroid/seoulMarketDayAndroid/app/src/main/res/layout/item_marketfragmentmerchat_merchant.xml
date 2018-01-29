@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_merchant"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGray"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/border_gray_top_and_bottom">
+
+        <ImageView
+            android:id="@+id/iv_merchant_avatar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_margin="12dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_merchant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
+
+        <FrameLayout
+            android:id="@+id/fl_merchant_follow"
+
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="12dp"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/ib_merchant_detail"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/transparent"
+                    android:padding="3dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/all_rightarrow"
+                    android:tint="@color/darkGray"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btn_merchant_follow"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/all_roundbox_pointcolor_r30"
+                    android:text="팔로우"
+                    android:textColor="@color/pointColor"
+                    android:textSize="14sp"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_merchant_follow_cancel"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/all_roundbox_pointcolor_r30"
+                    android:text="팔로우취소"
+                    android:textColor="@color/pointColor"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>

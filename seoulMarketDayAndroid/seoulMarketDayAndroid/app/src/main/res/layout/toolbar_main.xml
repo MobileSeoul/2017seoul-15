@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/pointColor"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+    <FrameLayout
+        android:id="@+id/blank"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_toolbarmain_logo"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:src="@drawable/all_logo"
+        android:tint="@color/white" />
+
+    <ImageButton
+        android:id="@+id/ib_toolbarmain_search"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_weight="0.5"
+        android:background="@android:color/transparent"
+        android:padding="11dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/toolbar_search"
+        android:tint="@color/white" />
+</LinearLayout>

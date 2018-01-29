@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.opinion.service.impl.OpinionMapper">
+
+	<!-- INSERT Query -->
+	<insert id="insertOpinion" parameterType="Opinion">
+		INSERT	INTO	opinions (user_id, opinion_category_id, content) 
+			VALUES ( #{user.id}, #{opinionCategory.id}, #{content});
+	</insert>
+
+</mapper>

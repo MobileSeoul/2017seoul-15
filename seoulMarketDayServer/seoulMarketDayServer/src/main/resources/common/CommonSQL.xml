@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djunderworld.stm.engine.db.common.sql">
+
+	<!-- SQL 공통 함수  -->
+	<sql id="selectMaxWithoutWhere">
+		select 	Max(${field}) as ${alias}
+				from ${table}
+	</sql>
+
+	<sql id="selectMax">
+		select  Max(${field}) as ${alias}
+				from ${table}
+				where ${column} =
+	</sql>
+
+	<sql id="selectCount">
+		select 	count(id) as ${alias}
+				from ${table}
+				where ${column} =
+	</sql>
+
+	<sql id="addColumn">
+		AND ${column} =
+	</sql>
+
+
+	<!-- 테이블 별 컬럼  -->
+	<sql id="MarketColumns">
+		${marketTableAlias}.id as ${prefix}id,
+		${marketTableAlias}.market_category_id as market_category_id,
+		${marketTableAlias}.region_category_id as region_category_id,
+		${marketTableAlias}.name as ${prefix}name,
+		${marketTableAlias}.road_address as ${prefix}road_address,
+		${marketTableAlias}.lot_number_address as ${prefix}lot_number_address,
+		${marketTableAlias}.longitude as ${prefix}longitude,
+		${marketTableAlias}.latitude as ${prefix}latitude,
+		${marketTableAlias}.phone as ${prefix}phone,
+		${marketTableAlias}.homepage as ${prefix}homepage,
+		${marketTableAlias}.avatar as ${prefix}avatar,
+		${marketTableAlias}.sub_name as ${prefix}sub_name,
+		${marketTableAlias}.store_count as ${prefix}store_count,
+		${marketTableAlias}.title_items as ${prefix}title_items,
+		${marketTableAlias}.hits as ${prefix}hits,
+		${marketTableAlias}.created_at as ${prefix}created_at,
+		${marketTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="UserColumns">
+		${userTableAlias}.id as ${prefix}id,
+		${userTableAlias}.email as ${prefix}email,
+		${userTableAlias}.name as
+		${prefix}name,
+		${userTableAlias}.phone as ${prefix}phone,
+		${userTableAlias}.avatar as ${prefix}avatar,
+		${userTableAlias}.cover as
+		${prefix}cover,
+		${userTableAlias}.intro as ${prefix}intro,
+		${userTableAlias}.level as ${prefix}level,
+		${userTableAlias}.gender as
+		${prefix}gender,
+		${userTableAlias}.fcm_token as ${prefix}fcm_token,
+		${userTableAlias}.device_id as ${prefix}device_id,
+		${userTableAlias}.login_category_id as ${prefix}login_category_id,
+		${userTableAlias}.created_at as ${prefix}created_at,
+		${userTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="MarketCategoryColumns">
+		${marketCategoryTableAlias}.id as ${prefix}id,
+		${marketCategoryTableAlias}.name as ${prefix}name,
+		${marketCategoryTableAlias}.created_at as ${prefix}created_at,
+		${marketCategoryTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="RegionCategoryColumns">
+		${regionCategoryTableAlias}.id as ${prefix}id,
+		${regionCategoryTableAlias}.name as ${prefix}name,
+		${regionCategoryTableAlias}.created_at as ${prefix}created_at,
+		${regionCategoryTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="RangeCategoryColumns">
+		${rangeCategoryTableAlias}.id as ${prefix}id,
+		${rangeCategoryTableAlias}.name as ${prefix}name,
+		${rangeCategoryTableAlias}.created_at as ${prefix}created_at,
+		${rangeCategoryTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+	
+	<sql id="OpinionCategoryColumns">
+		${opinionCategoryTableAlias}.id as ${prefix}id,
+		${opinionCategoryTableAlias}.name as ${prefix}name,
+		${opinionCategoryTableAlias}.created_at as ${prefix}created_at,
+		${opinionCategoryTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+	
+	<sql id="ExitCategoryColumns">
+		${exitCategoryTableAlias}.id as ${prefix}id,
+		${exitCategoryTableAlias}.name as ${prefix}name,
+		${exitCategoryTableAlias}.created_at as ${prefix}created_at,
+		${exitCategoryTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="FileColumns">
+		${fileTableAlias}.id as ${prefix}id,
+		${fileTableAlias}.story_id as ${prefix}story_id,
+		${fileTableAlias}.market_id as ${prefix}market_id,
+		${fileTableAlias}.user_id as ${prefix}user_id,
+		${fileTableAlias}.post_category_id as ${prefix}post_category_id,
+		${fileTableAlias}.type	as ${prefix}type,
+		${fileTableAlias}.name as ${prefix}name,
+		${fileTableAlias}.ext as ${prefix}ext,
+		${fileTableAlias}.size as	${prefix}size,
+		${fileTableAlias}.hits as	${prefix}hits,
+		${fileTableAlias}.created_at as ${prefix}created_at,
+		${fileTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="StoryColumns">
+		${storyTableAlias}.id as ${prefix}id,
+		${storyTableAlias}.user_id as ${prefix}user_id,
+		${storyTableAlias}.market_id as ${prefix}market_id,
+		${storyTableAlias}.content as ${prefix}content,
+		${storyTableAlias}.created_at as ${prefix}created_at,
+		${storyTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+	<sql id="BehaviorColumns">
+		${behaviorTableAlias}.id as ${prefix}id,
+		${behaviorTableAlias}.name as ${prefix}name,
+		${behaviorTableAlias}.created_at as ${prefix}created_at,
+		${behaviorTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+	
+	<sql id="StoryCommentColumns">
+		${storyCommentTableAlias}.id as ${prefix}id,
+		${storyCommentTableAlias}.story_id as ${prefix}story_id,
+		${storyCommentTableAlias}.user_id as ${prefix}user_id,
+		${storyCommentTableAlias}.group_id as ${prefix}group_id,
+		${storyCommentTableAlias}.depth as ${prefix}depth,
+		${storyCommentTableAlias}.position as ${prefix}position,
+		${storyCommentTableAlias}.content as ${prefix}content,
+		${storyCommentTableAlias}.created_at as ${prefix}created_at,
+		${storyCommentTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+	
+	<sql id="NotificationColumns">
+		${notificationTableAlias}.id as ${prefix}id,
+		${notificationTableAlias}.user_id as ${prefix}user_id,
+		${notificationTableAlias}.receiver_id as ${prefix}receiver_id,
+		${notificationTableAlias}.receiver_category_id as ${prefix}receiver_category_id,
+		${notificationTableAlias}.content as ${prefix}content,
+		${notificationTableAlias}.navigation_id as ${prefix}navigation_id,
+		${notificationTableAlias}.navigation_category_id as ${prefix}navigation_category_id,
+		${notificationTableAlias}.checked as ${prefix}checked,
+		${notificationTableAlias}.behavior_id as ${prefix}behavior_id,
+		${notificationTableAlias}.created_at as ${prefix}created_at,
+		${notificationTableAlias}.updated_at as ${prefix}updated_at
+	</sql>
+
+</mapper>

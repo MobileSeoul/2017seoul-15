@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.story.service.impl.StoryMapper">
+
+	<!-- Result Map -->
+
+	<resultMap id="StoryResult" type="Story">
+		<id property="id" column="story_id" />
+		<result property="content" column="story_content" />
+		<result property="likeCount" column="story_like_count" />
+		<result property="commentCount" column="story_comment_count" />
+		<result property="isLikeChecked" column="story_like_check"/>
+		<result property="createdAt" column="story_created_at" />
+		<result property="updatedAt" column="story_updated_at" />
+
+		<association property="user" resultMap="UserResult" />
+		<collection property="files" javaType="ArrayList" ofType="File"
+			column="story_id" select="selectFileListForStory" />
+
+	</resultMap>
+	
+	<resultMap id="StoryWithFileResult" type="Story">
+		<id property="id" column="story_id" />
+		<result property="content" column="story_content" />
+		<result property="likeCount" column="story_like_count" />
+		<result property="commentCount" column="story_comment_count" />
+		<result property="isLikeChecked" column="story_like_check"/>
+		<result property="createdAt" column="story_created_at" />
+		<result property="updatedAt" column="story_updated_at" />
+		<association property="user" resultMap="UserResult" />
+		
+		<collection property="files" javaType="ArrayList" ofType="File">
+			<id property="id" column="file_id" />
+			<result property="postCategoryId" column="file_post_category_id" />
+			<result property="type" column="file_type" />
+			<result property="name" column="file_name" />
+			<result property="ext" column="file_ext" />
+			<result property="size" column="file_size" />
+			<result property="hits" column="file_hits" />
+			<result property="createdAt" column="file_created_at" />
+			<result property="updatedAt" column="file_updated_at" />
+		</collection>
+
+	</resultMap>
+	
+
+	<resultMap id="FileResult" type="File">
+		<id property="id" column="file_id" />
+		<result property="postCategoryId" column="file_post_category_id" />
+		<result property="type" column="file_type" />
+		<result property="name" column="file_name" />
+		<result property="ext" column="file_ext" />
+		<result property="size" column="file_size" />
+		<result property="hits" column="file_hits" />
+		<result property="createdAt" column="file_created_at" />
+		<result property="updatedAt" column="file_updated_at" />
+	</resultMap>
+
+	<resultMap id="UserResult" type="User">
+		<id property="id" column="user_id" />
+		<result property="email" column="user_email" />
+		<result property="name" column="user_name" />
+		<result property="phone" column="user_phone" />
+		<result property="avatar" column="user_avatar" />
+		<result property="cover" column="user_cover" />
+		<result property="intro" column="user_intro" />
+		<result property="level" column="user_level" />
+		<result property="gender" column="user_gender" />
+		<result property="fcmToken" column="user_fcm_token" />
+		<result property="deviceId" column="user_device_id" />
+		<result property="loginCategoryId" column="user_login_category_id" />
+		<result property="createdAt" column="user_created_at" />
+		<result property="updatedAt" column="user_updated_at" />
+		<association property="market" resultMap="MarketResult" />
+
+		<association property="phoneRangeCategory" resultMap="RangeCategoryResult"
+			columnPrefix="phone_" />
+		<association property="genderRangeCategory" resultMap="RangeCategoryResult"
+			columnPrefix="gender_" />
+	</resultMap>
+
+	<resultMap id="RangeCategoryResult" type="RangeCategory">
+		<id property="id" column="range_category_id" />
+		<result property="name" column="range_category_name" />
+		<result property="createdAt" column="range_category_created_at" />
+		<result property="updatedAt" column="range_category_updated_at" />
+	</resultMap>
+	
+	<resultMap id="MarketResult" type="Market">
+		<id property="id" column="market_id" />
+
+		<result property="name" column="market_name" />
+		<result property="roadAddress" column="market_road_address" />
+		<result property="lotNumberAddress" column="market_lot_number_address" />
+		<result property="longitude" column="market_longitude" />
+		<result property="latitude" column="market_latitude" />
+		<result property="phone" column="market_phone" />
+		<result property="homepage" column="market_homepage" />
+		<result property="avatar" column="market_avatar" />
+		<result property="subName" column="market_sub_name" />
+		<result property="storeCount" column="market_store_count" />
+		<result property="titleItems" column="market_title_items" />
+		<result property="hits" column="market_hits" />
+		<result property="distance" column="market_distance" />
+		<result property="createdAt" column="market_created_at" />
+		<result property="updatedAt" column="market_updated_at" />
+		<result property="distance" column="market_distance" />
+		<result property="followerCount" column="market_follower_count" />
+		<result property="userCount" column="market_user_count" />
+		<result property="isFollowed" column="market_isFollowed" />
+
+
+		<association property="marketCategory" column="market_category_id"
+			javaType="MarketCategory" resultMap="MarketCategoryResult" />
+
+		<association property="regionCategory" column="region_category_id"
+			javaType="RegionCategory" resultMap="RegionCategoryResult" />
+			
+	</resultMap>
+
+
+	<resultMap id="MarketCategoryResult" type="MarketCategory">
+		<id property="id" column="market_category_id" />
+		<result property="name" column="market_category_name" />
+		<result property="createdAt" column="market_category_created_at" />
+		<result property="updatedAt" column="market_category_updated_at" />
+	</resultMap>
+
+	<resultMap id="RegionCategoryResult" type="RegionCategory">
+		<id property="id" column="region_category_id" />
+		<result property="name" column="region_category_name" />
+		<result property="createdAt" column="region_category_created_at" />
+		<result property="updatedAt" column="region_category_updated_at" />
+	</resultMap>
+
+
+	<!-- SELECT Query -->
+	<select id="selectBestStoryListPerMonthLimitFive" resultMap="StoryWithFileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+					<property name="storyTableAlias" value="st" />
+					<property name="prefix" value="story_" />
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us" />
+					<property name="prefix" value="user_" />
+				</include>
+				,
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_count" />
+					<property name="table" value="story_likes" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_like_count,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_comment_count
+				
+				FROM	(select	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+									<property name="storyTableAlias" value="st" />
+									<property name="prefix" value="" />
+								</include>
+								
+								from	stories	st,
+										story_likes	sl
+			
+								where	st.id	=	sl.story_id		and							
+										month(st.created_at) = month(now())	
+								
+								group by sl.story_id
+								
+								order by count(sl.id) desc )	st,
+						files	fi,
+			            users	us
+			    
+			   	where	st.id	=	fi.story_id	and
+						fi.type	=	1	and
+			            st.user_id	=	us.id	
+			            
+				group by	st.id
+				limit	5
+	</select>
+	
+	<select id="selectFileListForStory" resultMap="FileResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.FileColumns">
+					<property name="fileTableAlias" value="fi" />
+					<property name="prefix" value="file_" />
+				</include>
+
+			FROM 	files fi,
+					stories st
+	
+			where 	fi.post_category_id = 1 	and
+					fi.story_id = st.id 	and
+					fi.type	!=	2	and
+					st.id = #{id}
+	</select>
+
+	<select id="selectStoryListByStoryUserIdAndUserIdAndOffset" resultMap="StoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+					<property name="storyTableAlias" value="st" />
+					<property name="prefix" value="story_" />
+				</include>
+				,
+		
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us" />
+					<property name="prefix" value="user_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr" />
+					<property name="prefix" value="phone_range_category_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr" />
+					<property name="prefix" value="gender_range_category_" />
+				</include>
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_check"/>
+				    <property name="table" value="story_likes"/>
+				    <property name="column" value="story_id"/>
+				</include> st.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId} ) as story_like_check
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_count" />
+					<property name="table" value="story_likes" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_like_count,
+		
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_comment_count
+		
+					FROM 	stories st,
+							users us,
+							range_categories pr,
+							range_categories gr
+			
+					where 	st.user_id = us.id and
+							us.gender_range_category_id = gr.id and
+							us.phone_range_category_id = pr.id and
+							us.id = #{storyUserId}
+			
+					order by st.created_at desc
+				LIMIT 20 OFFSET #{offset};
+	</select>
+	
+	<select id="selectStoryListByMarketIdAndUserIdAndOffset" resultMap="StoryResult">
+		SELECT <include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+					<property name="storyTableAlias" value="st" />
+					<property name="prefix" value="story_" />
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us" />
+					<property name="prefix" value="user_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr" />
+					<property name="prefix" value="phone_range_category_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr" />
+					<property name="prefix" value="gender_range_category_" />
+				</include>
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_check"/>
+				    <property name="table" value="story_likes"/>
+				    <property name="column" value="story_id"/>
+				</include> st.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId} ) as story_like_check
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_count" />
+					<property name="table" value="story_likes" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_like_count,
+		
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_comment_count
+		
+					FROM 	stories st,
+							users us,
+							range_categories pr,
+							range_categories gr
+			
+					where 	st.user_id = us.id and
+							us.gender_range_category_id = gr.id and
+							us.phone_range_category_id = pr.id and
+							st.market_id = #{marketId}
+			
+					order by st.created_at desc
+				LIMIT 20 OFFSET #{offset};
+	</select>
+	
+	
+	<select id="selectStoryByIdAndUserId" resultMap="StoryResult" >
+		SELECT <include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+					<property name="storyTableAlias" value="st" />
+					<property name="prefix" value="story_" />
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us" />
+					<property name="prefix" value="user_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr" />
+					<property name="prefix" value="phone_range_category_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr" />
+					<property name="prefix" value="gender_range_category_" />
+				</include>
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_check"/>
+				    <property name="table" value="story_likes"/>
+				    <property name="column" value="story_id"/>
+				</include> #{id}
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId} ) as story_like_check
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_count" />
+					<property name="table" value="story_likes" />
+					<property name="column" value="story_id" />
+				</include>
+				#{id}) as story_like_count,
+		
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="story_id" />
+				</include>
+				#{id}) as story_comment_count,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/>
+				</include>
+		
+					FROM 	stories st,
+							users us,
+							range_categories pr,
+							range_categories gr,
+							market_users	mu,
+							markets mk,
+							market_categories mc,
+				            region_categories rc
+			
+					where 	st.id = #{id}	and
+							st.user_id = us.id and
+							us.id =	mu.user_id	and
+							mu.market_id	=	mk.id	and
+							mk.region_category_id	=	rc.id	and
+							mk.market_category_id	=	mc.id	and
+							us.gender_range_category_id = gr.id and
+							us.phone_range_category_id = pr.id 
+	</select>
+	
+	<select id="selectStoryListByTagName" resultMap="StoryResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.StoryColumns">
+					<property name="storyTableAlias" value="st" />
+					<property name="prefix" value="story_" />
+				</include>
+				,
+				<include refid="com.djunderworld.stm.engine.db.common.sql.UserColumns">
+					<property name="userTableAlias" value="us" />
+					<property name="prefix" value="user_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="pr" />
+					<property name="prefix" value="phone_range_category_" />
+				</include>
+				,
+				<include
+					refid="com.djunderworld.stm.engine.db.common.sql.RangeCategoryColumns">
+					<property name="rangeCategoryTableAlias" value="gr" />
+					<property name="prefix" value="gender_range_category_" />
+				</include>
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_check"/>
+				    <property name="table" value="story_likes"/>
+				    <property name="column" value="story_id"/>
+				</include> st.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId} ) as story_like_check
+				,
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_like_count" />
+					<property name="table" value="story_likes" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_like_count,
+		
+				(
+				<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="story_comment_count" />
+					<property name="table" value="story_comments" />
+					<property name="column" value="story_id" />
+				</include>
+				st.id) as story_comment_count,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/>
+				</include>
+		
+					FROM 	story_tags sg,
+							stories st,
+							users us,
+							range_categories pr,
+							range_categories gr,
+							market_users	mu,
+							markets mk,
+							market_categories mc,
+				            region_categories rc
+			
+					where 	st.user_id = us.id and
+							us.id =	mu.user_id	and
+							mu.market_id	=	mk.id	and
+							mk.region_category_id	=	rc.id	and
+							mk.market_category_id	=	mc.id	and
+							us.gender_range_category_id = gr.id and
+							us.phone_range_category_id = pr.id and
+							st.id = sg.story_id	and
+							sg.tag_name = #{tagName}
+			
+					order by st.created_at desc
+				LIMIT 20 OFFSET #{offset};
+	</select>
+	
+	<select id="selectLikeCheckByIdAndUserId" resultType="Boolean">
+		<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+			<property name="alias" value="count"/>
+		    <property name="table" value="story_likes"/>
+		    <property name="column" value="story_id"/>
+		</include> #{id}
+		<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+		    <property name="column" value="user_id"/> 
+		</include> #{userId}
+	</select>
+	
+
+	<!-- INSERT Query -->
+	<insert id="insertStory" parameterType="Story" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO stories(user_id, market_id, content) VALUES
+		(#{user.id},#{user.market.id},#{content});
+	</insert>
+	
+	<insert id="insertStoryLikeByIdAndUserId">
+		INSERT INTO story_likes(story_id, user_id) VALUES
+		(#{id},#{userId});
+	</insert>
+	
+	
+	<!-- UPDATE Query -->
+	<update id="updateStory" parameterType="Story">
+		UPDATE	stories	SET
+			content	=	#{content}	
+			where	id	=	#{id}
+	</update>
+
+
+	<!-- DELETE Query -->
+	<delete id="deleteStoryLikeByIdAndUserId">
+		DELETE 
+			FROM	story_likes
+			WHERE	story_id	=	#{id}	and
+					user_id	=	#{userId}
+	</delete>
+	
+	<delete id="deleteStoryById">
+		delete	from	stories
+				where	id	=	#{id}
+	</delete>
+</mapper>

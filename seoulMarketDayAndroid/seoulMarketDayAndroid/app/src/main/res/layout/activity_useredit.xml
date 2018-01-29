@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/in_useredit_toolbar"
+            layout="@layout/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border_gray_bottom"
+                android:paddingBottom="1dp">
+
+
+                <FrameLayout
+                    android:id="@+id/fl_useredit_avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_useredit_avatar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/iv_useredit_editavatar"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="35dp"
+                        android:src="@drawable/edit_camera" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/lightGray"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/iv_useredit_cover"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <ImageView
+                            android:id="@+id/iv_useredit_editcover"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/edit_camera" />
+
+                    </FrameLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="45dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_useredit_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/iv_useredit_editname"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginRight="5dp"
+                                android:gravity="center_vertical"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:id="@+id/iv_useredit_editname"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toEndOf="@+id/tv_useredit_name"
+                                android:src="@drawable/edit_write"
+                                android:tint="@color/darkGray" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_gray_top_and_bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/border_gray_bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_vertical"
+                            android:text="이메일"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_useredit_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center_vertical"
+                            android:maxLines="1"
+                            android:textColor="@color/darkGray" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_useredit_intro"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/border_gray_bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="60dp"
+                            android:gravity="center_vertical"
+                            android:text="소개"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_useredit_intro"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:ellipsize="end"
+                            android:gravity="right|center_vertical"
+                            android:singleLine="true"
+                            android:textColor="@color/darkGray" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_useredit_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/border_gray_bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_vertical"
+                            android:text="전화번호"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_useredit_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="right|center_vertical"
+                            android:maxLines="1"
+                            android:textColor="@color/darkGray" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:id="@+id/ll_useredit_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center_vertical"
+                            android:text="성별"
+                            android:textSize="15sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_useredit_gender"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <RadioButton
+                                android:id="@+id/rb_useredit_genderman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="남성"
+                                android:textColor="@color/darkGray"
+                                android:buttonTint="@color/darkGray" />
+
+                            <RadioButton
+                                android:id="@+id/rb_useredit_genderwoman"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="여성"
+                                android:textColor="@color/darkGray"
+                                android:buttonTint="@color/darkGray" />
+                        </RadioGroup>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_gray_top_and_bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/border_gray_bottom"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center_vertical"
+                            android:text="전화번호 공개"
+                            android:textSize="15sp" />
+
+                        <Switch
+                            android:id="@+id/sw_useredit_phone"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:theme="@style/Switch" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:gravity="center_vertical"
+                            android:text="성별 공개"
+                            android:textSize="15sp" />
+
+                        <Switch
+                            android:id="@+id/sw_useredit_gender"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:theme="@style/Switch" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

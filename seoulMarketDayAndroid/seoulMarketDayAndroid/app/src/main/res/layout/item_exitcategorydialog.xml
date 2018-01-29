@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_exitcategorydialog"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_gray_bottom"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_exitcategorydialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        android:singleLine="false"
+        android:textColor="@color/defaultTextColor"
+        android:textSize="15sp" />
+</LinearLayout>

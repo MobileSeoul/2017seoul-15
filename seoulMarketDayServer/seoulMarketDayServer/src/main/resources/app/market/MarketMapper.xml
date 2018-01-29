@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.djunderworld.stm.market.service.impl.MarketMapper">
+	
+	<!-- Result Map -->
+	<resultMap id="MarketResult" type="Market">
+		<id property="id" column="market_id" />
+
+		<result property="name" column="market_name" />
+		<result property="roadAddress" column="market_road_address" />
+		<result property="lotNumberAddress" column="market_lot_number_address" />
+		<result property="longitude" column="market_longitude" />
+		<result property="latitude" column="market_latitude" />
+		<result property="phone" column="market_phone" />
+		<result property="homepage" column="market_homepage" />
+		<result property="avatar" column="market_avatar" />
+		<result property="subName" column="market_sub_name" />
+		<result property="storeCount" column="market_store_count" />
+		<result property="titleItems" column="market_title_items" />
+		<result property="hits" column="market_hits" />
+		<result property="distance" column="market_distance" />
+		<result property="createdAt" column="market_created_at" />
+		<result property="updatedAt" column="market_updated_at" />
+		<result property="distance" column="market_distance" />
+		<result property="followerCount" column="market_follower_count" />
+		<result property="userCount" column="market_user_count" />
+		<result property="isFollowed" column="market_isFollowed" />
+
+
+		<association property="marketCategory" column="market_category_id"
+			javaType="MarketCategory" resultMap="MarketCategoryResult" />
+
+		<association property="regionCategory" column="region_category_id"
+			javaType="RegionCategory" resultMap="RegionCategoryResult" />
+			
+	</resultMap>
+
+
+	<resultMap id="MarketCategoryResult" type="MarketCategory">
+		<id property="id" column="market_category_id" />
+		<result property="name" column="market_category_name" />
+		<result property="createdAt" column="market_category_created_at" />
+		<result property="updatedAt" column="market_category_updated_at" />
+	</resultMap>
+
+	<resultMap id="RegionCategoryResult" type="RegionCategory">
+		<id property="id" column="region_category_id" />
+		<result property="name" column="region_category_name" />
+		<result property="createdAt" column="region_category_created_at" />
+		<result property="updatedAt" column="region_category_updated_at" />
+	</resultMap>
+
+	<!-- SELECT Query -->
+	<select id="selectFollowingMarketListByUserIdAndOffset" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/>
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId}) as market_isFollowed
+		        
+		
+			FROM	markets mk,
+					market_categories mc,
+		            region_categories rc,
+		            market_followers	mf
+		            
+		    where	mk.region_category_id	=	rc.id	and
+					mk.market_category_id	=	mc.id	and
+					mk.id	=	mf.market_id	and
+					mf.user_id	=	#{userId}
+			
+			LIMIT	20	OFFSET	#{offset};
+							
+	</select>
+
+	<select id="selectMarketById" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/>
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> #{id}) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> #{id}) as market_user_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId}) as market_isFollowed
+		        
+		
+			FROM	markets mk,
+					market_categories mc,
+		            region_categories rc
+		            
+		    where	mk.region_category_id	=	rc.id	and
+					mk.market_category_id	=	mc.id	and
+					mk.id	=	#{id};
+	</select>
+
+	
+	<select id="selectMarketListByLocationLimitFive" parameterType="Location" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/>
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				mk.distance	as	market_distance,
+		 
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+		        
+		
+			FROM	(SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+								<property name="marketTableAlias" value="m"/>
+			   					<property name="prefix" value=""/> 
+							</include>,
+							round((6371*acos(cos(radians(#{latitude}))*cos(radians(m.latitude))*cos(radians(m.longitude)-radians(#{longitude}))+sin(radians(#{latitude}))*sin(radians(m.latitude)))),2)	as	distance
+					
+						FROM	markets m
+						HAVING	<![CDATA[ distance	<=	80 ]]>
+						order by	distance	asc
+						limit 5) mk,
+					market_categories mc,
+		            region_categories rc
+		            
+		    where	mk.region_category_id	=	rc.id	and
+					mk.market_category_id	=	mc.id
+					
+			order by	mk.distance	asc;
+	</select>
+	
+	<select id="selectMarketListByFollowerLimitFive"  resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+   					<property name="prefix" value="market_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+   					<property name="prefix" value="market_category_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+					<property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+		
+			FROM	(SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+								<property name="marketTableAlias" value="m"/>
+								<property name="prefix" value=""/> 
+							</include>,
+							mf.follower_count as follower_count
+		
+						FROM	markets		m	
+						
+						Left join 
+								(select	market_id,
+										 count(user_id) as follower_count
+									from	market_followers
+									group by	market_id)	mf
+		
+						on	m.id	=	mf.market_id
+						
+						limit 5) mk,
+					market_categories mc,
+					region_categories rc
+					
+			where	mk.region_category_id	=	rc.id	and
+					mk.market_category_id	=	mc.id
+			
+			order by mk.follower_count desc
+			
+	</select>
+	
+	<select id="selectMarketListByKeywordAndOffset" resultMap="MarketResult" >
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+				,
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id
+				<include refid="com.djunderworld.stm.engine.db.common.sql.addColumn">
+				    <property name="column" value="user_id"/> 
+				</include> #{userId}) as market_isFollowed
+		        
+		
+				FROM	markets mk,
+						market_categories mc,
+			            region_categories rc
+			            
+			    where	mk.region_category_id	=	rc.id	and
+						mk.market_category_id	=	mc.id	and
+						(mk.name	like	CONCAT('%', #{keyword},'%')	or
+						mk.lot_number_address	like	CONCAT('%', #{keyword},'%'))
+				
+				order by	mk.id	asc
+			LIMIT	20	OFFSET	#{offset};
+	</select>
+	
+	<select id="selectMarketByUserId" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+					<property name="prefix" value="market_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+		        
+		
+			FROM	markets mk,
+					market_categories mc,
+		            region_categories rc,
+		            market_users	mu
+		            
+		    where	mk.region_category_id	=	rc.id	and
+					mk.market_category_id	=	mc.id	and
+					mk.id	=	mu.market_id	and
+					mu.user_id	=	#{userId}
+	</select>
+	
+	<select id="selectMarketListByRegionCategoryIdAndLocation" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+				    <property name="prefix" value="market_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+				    <property name="prefix" value="market_category_"/> 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+				    <property name="prefix" value="region_category_"/> 
+				</include>,
+				
+				mk.distance	as	market_distance,
+		 
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+		        
+		
+				FROM	(SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+									<property name="marketTableAlias" value="m"/>
+								    <property name="prefix" value=""/> 
+								</include>,
+								round((6371*acos(cos(radians(#{latitude}))*cos(radians(latitude))*cos(radians(longitude)-radians(#{longitude}))+sin(radians(#{latitude}))*sin(radians(latitude)))),2)	as	distance
+						
+							FROM	markets m)	mk,
+						market_categories mc,
+			            region_categories rc
+			            
+			    where	mk.region_category_id	=	#{regionCategoryId}	and
+						mk.market_category_id	=	mc.id
+						
+			order by	mk.id;
+	</select>
+	
+	<select id="selectMarketListByRegionCategoryId" resultMap="MarketResult">
+		SELECT	<include refid="com.djunderworld.stm.engine.db.common.sql.MarketColumns">
+					<property name="marketTableAlias" value="mk"/>
+ 				    <property name="prefix" value="market_"/>				 
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.MarketCategoryColumns">
+				    <property name="marketCategoryTableAlias" value="mc"/>
+   				    <property name="prefix" value="market_category_"/>				 
+				    
+				</include>,
+				
+				<include refid="com.djunderworld.stm.engine.db.common.sql.RegionCategoryColumns">
+				    <property name="regionCategoryTableAlias" value="rc"/>
+ 				    <property name="prefix" value="region_category_"/>				 
+				</include>,
+		        
+		        (<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_follower_count"/>
+				    <property name="table" value="market_followers"/>
+				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_follower_count,
+				
+				(<include refid="com.djunderworld.stm.engine.db.common.sql.selectCount">
+					<property name="alias" value="market_user_count"/>
+				    <property name="table" value="market_users"/>
+   				    <property name="column" value="market_id"/>
+				</include> mk.id) as market_user_count
+		        
+		
+			FROM	markets mk,
+					market_categories mc,
+		            region_categories rc
+		            
+		    where	mk.region_category_id	=	rc.id	and
+		    		rc.id	=	#{regionCategoryId}	and
+					mk.market_category_id	=	mc.id	
+		    		
+		   			<if  test="marketCategoryId > 0">
+		   				and mc.id	= #{marketCategoryId}
+					</if>
+						
+	</select>
+
+</mapper>

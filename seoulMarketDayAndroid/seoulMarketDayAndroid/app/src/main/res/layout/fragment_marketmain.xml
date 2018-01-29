@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nsv_marketmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_gray"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="정보"
+                android:textColor="@color/defaultTextColor" />
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_store"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/all_store"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_merchant"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/merchants"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_follow"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/all_user"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_follow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_phone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:padding="6dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/phone"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#365899" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_homepage"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/internet"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_homepage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#365899" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_subname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/crown"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_subname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_marketmain_items"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_gray_bottom"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:padding="3dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/items"
+                        android:tint="@color/darkGray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_marketmain_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="TextView" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_marketmain_moreinfo"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="전체 보기" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_marketmain_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_gray"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="사진"
+                android:textColor="@color/defaultTextColor" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_marketmain_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:nestedScrollingEnabled="false"
+                    android:scrollbars="horizontal"
+                    android:visibility="visible" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_marketmain_morephoto"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="전체 보기" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_marketmain_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_gray"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="동영상"
+                android:textColor="@color/defaultTextColor" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_marketmain_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:scrollbars="horizontal" />
+
+            <TextView
+                android:id="@+id/tv_marketmain_morevideo"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="전체 보기" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_marketmain_story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ib_toolbar_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/toolbar_back"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="60dp"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="18sp" />
+
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_follow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/transparent"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/all_follow"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_follow_cancel"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/transparent"
+                android:padding="13dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/all_followcancel"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>

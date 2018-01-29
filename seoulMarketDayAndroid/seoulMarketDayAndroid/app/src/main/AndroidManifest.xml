@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.stm">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme"
+        android:name="android.support.multidex.MultiDexApplication">
+
+       <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key" />
+
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".main.intro.activity.IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".main.base.activity.MainActivity"/>
+        <activity android:name=".regioncategory.map.activity.RegionCategoryMapActivity" />
+        <activity android:name=".regioncategory.base.activity.RegionCategoryActivity" />
+        <activity android:name=".login.base.activity.LoginActivity" />
+        <activity android:name=".login.create.join.activity.JoinActivity" />
+        <activity android:name=".login.create.joincategory.base.activity.JoinCategoryActivity" />
+        <activity android:name=".login.create.joincategory.fragment.merchant.search.activity.SearchMarketActivity" />
+        <activity android:name=".market.base.activity.MarketActivity" />
+        <activity android:name=".user.detail.merchant.base.activity.MerchantDetailActivity" />
+        <activity android:name=".user.detail.normal.activity.UserDetailActivity" />
+        <activity android:name=".story.create.activity.StoryCreateActivity" />
+        <activity android:name=".story.edit.activity.StoryEditActivity" />
+        <activity android:name=".comment.base.activity.CommentActivity" />
+        <activity android:name=".comment.detail.activity.CommentReplyActivity" />
+        <activity android:name=".story.searchtag.activity.SearchTagActivity" />
+        <activity android:name=".user.edit.profile.activity.UserProfileEditActivity" />
+        <activity android:name=".dialog.useredit.actvity.UserEditDialogActivity" />
+        <activity android:name=".market.map.base.activity.MarketMapActivity" />
+        <activity android:name=".market.map.streetview.activity.MarketStreetViewActivity" />
+        <activity android:name=".market.map.directions.activity.MarketDirectionsActivity" />
+        <activity android:name=".story.detail.activity.StoryDetailActivity" />
+        <activity android:name=".user.list.follower.activity.FollowerActivity" />
+        <activity android:name=".user.list.following.merchant.activity.FollowingMerchantActivity" />
+        <activity android:name=".user.list.following.market.activity.FollowingMarketActivity" />
+        <activity android:name=".user.edit.account.base.activity.EditAccountActivity" />
+        <activity android:name=".user.edit.account.password.activity.ChangePasswordActivity" />
+        <activity android:name=".user.create.opinion.activity.OpinionActivity" />
+        <activity android:name=".app.info.activity.AppInfoActivity"/>
+        <activity android:name=".login.find.password.activity.FindPasswordActivity"/>
+        <activity android:name=".login.reset.password.activity.ResetPasswordActivity"/>
+        <activity android:name=".user.edit.account.exit.activity.ExitActivity"/>
+        <activity android:name=".main.fragment.main.search.base.activity.SearchActivity"/>
+
+        <activity android:name=".dialog.exitcategory.activity.ExitCategoryDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".dialog.opinioncategory.activity.OpinionCategoryDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".dialog.notification.activity.NotificationDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".media.video.player.activity.VideoPlayerActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".dialog.comment.activity.CommentDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".comment.edit.actvity.CommentEditActivity" />
+        <activity
+            android:name=".dialog.story.activity.StoryDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+
+        <activity
+            android:name=".dialog.photo.activity.PhotoDialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+
+        <service
+            android:name=".firebase.message.FirebaseMessageService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".firebase.base.FirebaseInstanceIDService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+
+        </service>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.nhn.android.naverlogin.ui.OAuthLoginInAppBrowserActivity"
+            android:label="OAuth2.0 In-app" />
+    </application>
+</manifest>

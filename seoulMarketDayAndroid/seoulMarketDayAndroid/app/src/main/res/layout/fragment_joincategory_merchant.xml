@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_gray"
+    android:minHeight="230dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="서울장날에 가입하여 다양한 서비스를 이용해보세요."
+        android:textColor="@color/darkGray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_merchant_search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/border_gray_bottom"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="시장을 검색해보세요"
+            android:textColor="@color/darkGray" />
+
+        <Button
+            android:id="@+id/btn_merchant_join"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="120dp"
+            android:layout_height="36dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/all_buttonclick_gray_r30"
+            android:text="가입하기"
+            android:textColor="@color/darkGray"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
